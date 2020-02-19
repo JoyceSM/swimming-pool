@@ -6,7 +6,6 @@ public class Test {
 		System.out.println("Test one - Stephen");
 		System.out.println("Test two - Joyce");
 		System.out.println("Test two - Edwina");
-		System.out.println("Trying to update to old code");
 		
 	}
 
