@@ -1,1 +1,32 @@
 @charset "ISO-8859-1";
+
+body {
+	background-color: lightblue;
+}
+
+h1 {
+	color: blue;
+	text-align: center;
+}
+
+#welcome {
+	text-align: center;
+}
+
+#welcome p {
+	color: blue;
+	text-align: center;
+}
+
+#welcome button {
+	background-color: blue;
+	border: none;
+	font-size: 24px;
+	border-radius: 12px;
+	transition-duration: 0.4s;
+}
+
+#welcome button:hover {
+	background-color: white;
+}
+
