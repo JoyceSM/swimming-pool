@@ -1,83 +1,69 @@
-DROP DATABASE IF EXISTS SWIMMINGPOOL;
-CREATE DATABASE IF NOT EXISTS SWIMMINGPOOL;
-USE SWIMMINGPOOL;
-
-DROP TABLE IF EXISTS SWIMMINGPOOL;
+DROP DATABASE IF EXISTS SNAMH;
+CREATE DATABASE IF NOT EXISTS SNAMH;
+USE SNAMH;
 
 
-CREATE TABLE management (
-FullName VARCHAR (30) not null primary key,
-Email varchar(30) ,
-PhoneNumber int (30)not null,
-Address VARCHAR (30)
+DROP TABLE IF EXISTS Access_Type;
 
+CREATE TABLE Access_Type(
+id INTEGER AUTO_INCREMENT,
+description VARCHAR (30),	
+ PRIMARY KEY (id)
 );
 
-SELECT 'INSERTING DATA INTO DATABASE' as 'INFO';
-
-INSERT INTO management VALUES ('Sean Smith', 'SeanSmith@gmail.com', '0876565443', 'The Hill, Athlone');
-INSERT INTO management VALUES ('Mary Shine', 'MaryShine@gmail.com', '0874356776', 'Bog Road, Ballinasloe');
-INSERT INTO management VALUES ('Tom Jones', 'Tomjones@hotmail.com', '0874896554', 'Main street, Athlone');
-INSERT INTO management VALUES ('Eleanor Kelly', 'eleanorkelly@yahoo.co.uk', '0877899332', 'Ballybay, Roscommon');
-INSERT INTO management VALUES ('Margaret Shaw', 'Margaretshaw@hotmail.com', '089435556', 'monksland, Athlone');
-
-select * from management;
-
-CREATE TABLE staff (
-FullName VARCHAR (30) not null primary key,
-Email varchar(30) not null,
-PhoneNumber int (30)not null,
-Address VARCHAR (30)
-
-);
-SELECT 'INSERTING DATA INTO DATABASE' as 'INFO';
-
-INSERT INTO staff VALUES ('Marion Kilmartin', 'MarionKilmartin@gmail.com', '0896554334', 'Main street, Athlone');
-INSERT INTO staff VALUES ('Jamie Smith', 'Jamiesmith@gmail.com', '0866643588', 'Brewery street, Tullamore');
-INSERT INTO staff VALUES ('Orla Thornton', 'orlathornton@hotmail.com', '0877773356', 'long road, Tullamore');
-INSERT INTO staff VALUES ('Joan Lennon', 'Joanlennon@hotmail.com', '0864443556', 'bonavalley, Athlone');
-INSERT INTO staff VALUES ('Joe Bloggs', 'JoeBloggs@gmail.com', '0864343599', '3 monksland, Athlone');
-
-select * from staff;
-
-CREATE TABLE customer (
-FullName VARCHAR (30) not null primary key,
-Email varchar(30) not null,
-Address VARCHAR (30),
-MembershipStatus  VARCHAR (10),
-LEVEL  VARCHAR (30)
-
-);
-SELECT 'INSERTING DATA INTO DATABASE' as 'INFO';
-
-INSERT INTO customer VALUES ('Sharon Shannon', 'SharonShannon@gmail.com', '21 Red road, athlone', 'full', 'beginner');
-INSERT INTO customer VALUES ('Alan Richards', 'AlanRichards@gmail.com', '1 ros ard, athlone','full', 'advanced');
-INSERT INTO customer VALUES ('Joan Spain', 'Joanspain@gmail.com', '1 cluain broic, athlone','walk in', 'advanced');
-INSERT INTO customer VALUES ('Alan Ryan', 'Alanryan@gmail.com', '27 ridgeway, athlone','walk in', 'beginner');
-INSERT INTO customer VALUES ('Sarah Saurman', 'sarahsaurman@hotmail.com', '5 abbey road, athlone','full', 'beginner');
-
-
-select * from customer;
-
-CREATE TABLE classes (
-Event VARCHAR (30) not null primary key,
-teacher varchar(30) not null,
-StartDate  DATETIME NOT NULL
-
-
+CREATE TABLE Login(
+email_address VARCHAR (30),
+password VARCHAR (30),
+access_type INTEGER (30),
+username VARCHAR (30),
+	
+ PRIMARY KEY (email_address)
 );
 
-SELECT 'INSERTING DATA INTO DATABASE' as 'INFO';
+CREATE TABLE User(
+id INTEGER (10),
+full_name VARCHAR (30),
+date_of_birth DATE NOT NULL,
+membership VARCHAR (25),
+email_address VARCHAR (40),
+PRIMARY KEY (id)
+);
 
-INSERT INTO classes VALUES ('Aqua Aerobics', 'Marion Kilmartin', '2020-03-03 17:00:00');
-INSERT INTO classes VALUES ('Speed Training', 'Orla Thornton','2020-03-05 11:00:00' );
-INSERT INTO classes VALUES ('kids swimming lessons', 'Orla Thornton','2020-03-07 15:00:00' );
-INSERT INTO classes VALUES ('Adult swimming lessons', 'Marion Kilmartin','2020-03-08 20:00:00' );
-INSERT INTO classes VALUES ('Seniors keep fit', 'Orla Thornton','2020-03-06 11:00:00' );
+CREATE TABLE Payment(
+id VARCHAR (30),
+user_id DECIMAL (30) ,
+amount DECIMAL (30),
+payment_date Date,
+PRIMARY KEY (id)
+);
 
-select * from classes;
+CREATE TABLE Class_Enrollment(
+user_id DECIMAL (30),
+class_id VARCHAR (30),
+payment_type VARCHAR (30),
+enrollment_date DATE,
+school_name VARCHAR (30),
+price DECIMAL (30), 
+PRIMARY KEY (user_id) 
+);
 
+CREATE TABLE class(
+id VARCHAR (20),
+name VARCHAR (30),
+price DECIMAL (10),
+capacity DECIMAL (10),
+start_date DATE, 
+end_date DATE,
+instructor VARCHAR (40),
+PRIMARY KEY (id)
+);
 
+CREATE TABLE Timetable(
+class_id VARCHAR (12),
+day_of_week VARCHAR (12),
+time TIME,
+PRIMARY KEY (class_id)
+);
 
 
     
