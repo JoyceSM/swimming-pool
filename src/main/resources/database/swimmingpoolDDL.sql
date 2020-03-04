@@ -2,68 +2,90 @@ DROP DATABASE IF EXISTS SNAMH;
 CREATE DATABASE IF NOT EXISTS SNAMH;
 USE SNAMH;
 
-
+DROP TABLE IF EXISTS User;
 DROP TABLE IF EXISTS Access_Type;
+DROP TABLE IF EXISTS Login;
+DROP TABLE IF EXISTS Payment;
+DROP TABLE IF EXISTS Class_Enrollment;
+DROP TABLE IF EXISTS Class;
+DROP TABLE IF EXISTS Timetable;
+
+CREATE TABLE User(
+user_id INTEGER AUTO_INCREMENT NOT NULL,
+full_name VARCHAR (60) NOT NULL,
+gender VARCHAR (1),
+date_of_birth DATE NOT NULL,
+membership VARCHAR (25),
+email_address VARCHAR (40) NOT NULL,
+phone VARCHAR(24) NOT NULL,
+address VARCHAR(60) NOT NULL,
+city VARCHAR(15) NOT NULL,
+PRIMARY KEY (user_id),
+UNIQUE KEY (email_address)
+);
 
 CREATE TABLE Access_Type(
-id INTEGER AUTO_INCREMENT,
-description VARCHAR (30),	
- PRIMARY KEY (id)
+access_id INTEGER,
+function_type VARCHAR (30) NOT NULL,	
+ PRIMARY KEY (access_id)
 );
 
 CREATE TABLE Login(
-email_address VARCHAR (30),
-password VARCHAR (30),
-access_type INTEGER (30),
-username VARCHAR (30),
-	
- PRIMARY KEY (email_address)
-);
-
-CREATE TABLE User(
-id INTEGER (10),
-full_name VARCHAR (30),
-date_of_birth DATE NOT NULL,
-membership VARCHAR (25),
-email_address VARCHAR (40),
-PRIMARY KEY (id)
+username VARCHAR(30) NOT NULL,
+password VARCHAR(20) NOT NULL,
+access_id INTEGER,
+PRIMARY KEY (username),
+FOREIGN KEY (username)
+REFERENCES User (email_address),
+FOREIGN KEY (access_id)
+REFERENCES Access_Type (access_id)
 );
 
 CREATE TABLE Payment(
-id VARCHAR (30),
-user_id DECIMAL (30) ,
-amount DECIMAL (30),
+payment_id INTEGER AUTO_INCREMENT NOT NULL,
+user_id INTEGER,
+amount DECIMAL (30)NOT NULL,
 payment_date Date,
-PRIMARY KEY (id)
+PRIMARY KEY (payment_id),
+FOREIGN KEY (user_id)
+REFERENCES User (user_id)
 );
 
-CREATE TABLE Class_Enrollment(
-user_id DECIMAL (30),
-class_id VARCHAR (30),
-payment_type VARCHAR (30),
-enrollment_date DATE,
-school_name VARCHAR (30),
-price DECIMAL (30), 
-PRIMARY KEY (user_id) 
-);
-
-CREATE TABLE class(
-id VARCHAR (20),
-name VARCHAR (30),
+CREATE TABLE Class(
+class_id VARCHAR (20),
+class_name VARCHAR (30),
 price DECIMAL (10),
 capacity DECIMAL (10),
 start_date DATE, 
 end_date DATE,
 instructor VARCHAR (40),
-PRIMARY KEY (id)
+PRIMARY KEY (class_id)
 );
 
 CREATE TABLE Timetable(
 class_id VARCHAR (12),
 day_of_week VARCHAR (12),
 time TIME,
-PRIMARY KEY (class_id)
+FOREIGN KEY (class_id)
+REFERENCES Class (class_id)
 );
+
+CREATE TABLE Class_Enrollment(
+user_id INTEGER,
+class_id VARCHAR (20),
+payment_id INTEGER,
+enrollment_date DATE,
+school_name VARCHAR (30),
+price DECIMAL (30), 
+FOREIGN KEY (user_id)
+REFERENCES User (user_id),
+FOREIGN KEY (class_id)
+REFERENCES Class (class_id),
+FOREIGN KEY (payment_id)
+REFERENCES Payment (payment_id)
+);
+
+
 
 
     
