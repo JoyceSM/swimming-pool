@@ -7,6 +7,9 @@ public class LoginBean {
 	private String username;
 	
 	private String password;
+	
+	private int accessId;
+	
 
 	public String getUsername() {
 		return username;
@@ -24,4 +27,11 @@ public class LoginBean {
 		this.password = password;
 	}
 
+	public int getAccessId() {
+		return accessId;
+	}
+
+	public void setAccessId(int accessId) {
+		this.accessId = accessId;
+	}
 }
