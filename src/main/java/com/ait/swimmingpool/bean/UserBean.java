@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class UserBean {
-	private int id;
+	private int userId;
 	
 	private String fullName;
 	
@@ -22,12 +22,12 @@ public class UserBean {
 	
 	private String city;
 
-	public int getId() {
-		return id;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getFullName() {

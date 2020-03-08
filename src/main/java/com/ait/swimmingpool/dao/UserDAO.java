@@ -33,7 +33,7 @@ public class UserDAO {
 	
 	protected UserBean processRow(ResultSet rs) throws SQLException {
 		UserBean user = new UserBean();
-		user.setId(rs.getInt("id"));
+		user.setUserId(rs.getInt("userId"));
 		user.setFullName(rs.getString("fullName"));
 		user.setGender(rs.getString("gender"));
 		user.setDateOfBirth(rs.getString("dateOfBirth"));
