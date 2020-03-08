@@ -12,7 +12,7 @@ public class ConnectionHelper {
 		String driver = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			url = "jdbc:mysql://localhost/SWIMMINGPOOL?user=root&password=admin";
+			url = "jdbc:mysql://localhost/SNAMH?user=root&password=admin";
 			driver = "com.mysql.jdbc.Driver";
 			Class.forName(driver);
 		} catch (Exception e) {
