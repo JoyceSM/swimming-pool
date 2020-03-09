@@ -13,7 +13,6 @@ import com.ait.swimmingpool.dao.UserDAO;
 public class UserResource {
 	UserDAO dao = new UserDAO();
 	
-	
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
