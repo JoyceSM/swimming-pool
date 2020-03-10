@@ -33,3 +33,17 @@ var newUser = function(){
 		}
 	});
 };
+
+var formToJSON = function(){
+	return JSON.stringify({
+		"full_name": $('#fullnamecustomer').val(),
+		"date_of_birth": $('#dobcustomer').val(),
+		"gender": $("input[name='gender']:checked").val(),
+		"membership": $(this). children("#membership:selected"). val(),
+		"address": $('#addressUser').val(),
+		"city": $('#cityUser').val(),
+		"email_address": $('#emailUser').val(),
+		"password": $('#passwordUser').val(),
+		"confirm password": $('#confirmpassworduser').val()
+	});
+};
