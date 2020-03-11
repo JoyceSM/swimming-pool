@@ -1,25 +1,25 @@
 var rootURL = "http://localhost:8080/swimming-pool/rest/user";
 
 $(document).ready(function() {
-	findAll();
+//	findAll();
 	$(document).on("click", "#btnAdd", function(){newUser();});
 });
 
-var findAll = function() {
-	console.log('findAll');
-	$.ajax({
-		type: 'GET',
-		url: rootURL,
-		dataType: "json",
-		success:renderList
-	});
-};
-
-function renderList(data){
-	$.each(data, function(index, user){
-		$('#userList').append('<li><a href="#" id="' + user.id + '">' + user.name + '</a></li>');
-	});
-}
+//var findAll = function() {
+//	console.log('findAll');
+//	$.ajax({
+//		type: 'GET',
+//		url: rootURL,
+//		dataType: "json",
+//		success:renderList
+//	});
+//};
+//
+//function renderList(data){
+//	$.each(data, function(index, user){
+//		$('#userList').append('<li><a href="#" id="' + user.id + '">' + user.name + '</a></li>');
+//	});
+//}
 
 var newUser = function(){
 	console.log('addUser');
@@ -33,7 +33,7 @@ var newUser = function(){
 			alert('User created successfully');
 			$('#userId').val(data.id);
 			//$('#userList li').remove();
-			findAll();
+//			findAll();
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('addUser error: ' + textStatus)
@@ -42,9 +42,9 @@ var newUser = function(){
 };
 
 var formToJSON = function(){
-//	var userId = $('#userId').val();
+	var userId = $('#userId').val();
 	return JSON.stringify({
-		//"user_id": userId == "" ? null : userId, 
+		"user_id": userId == "" ? null : userId, 
 		"full_name": $('#fullnameuser').val(),
 		"date_of_birth": $('#dobuser').val(),
 		"gender": $('#gender').val(),

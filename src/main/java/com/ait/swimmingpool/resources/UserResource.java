@@ -10,12 +10,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.ait.swimmingpool.bean.UserBean;
+import com.ait.swimmingpool.dao.LoginDAO;
 import com.ait.swimmingpool.dao.UserDAO;
 
 
 @Path("/user")
 public class UserResource {
 	UserDAO dao = new UserDAO();
+	LoginDAO ldao = new LoginDAO();
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
