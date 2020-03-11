@@ -2,6 +2,7 @@ var rootURL = "http://localhost:8080/swimming-pool/";
 
 $(document).ready(function() {
 	findAll();
+	$(document).on("click", "#btnAdd", function(){newUser();});
 });
 
 var findAll = function() {
