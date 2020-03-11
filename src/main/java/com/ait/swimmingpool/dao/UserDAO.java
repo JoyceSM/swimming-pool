@@ -15,7 +15,7 @@ public class UserDAO {
 	public List<UserBean> findAll() {
 		List<UserBean> list = new ArrayList<UserBean>();
 		Connection c = null;
-		String sql = "SELECT * FROM user ORDER BY user_id";
+		String sql = "SELECT * FROM User ORDER BY user_id";
 		try {
 			c = ConnectionHelper.getConnection();
 			Statement s = c.createStatement();
@@ -34,13 +34,13 @@ public class UserDAO {
 	
 	protected UserBean processRow(ResultSet rs) throws SQLException {
 		UserBean user = new UserBean();
-		user.setUserId(rs.getInt("userId"));
-		user.setFullName(rs.getString("fullName"));
+		user.setUserId(rs.getInt("user_id"));
+		user.setFullName(rs.getString("full_name"));
 		user.setGender(rs.getString("gender"));
-		user.setDateOfBirth(rs.getString("dateOfBirth"));
+		user.setDateOfBirth(rs.getString("date_of_birth"));
 		user.setMembership(rs.getString("membership"));
-		user.setEmail(rs.getString("email"));
-		user.setTelephone(rs.getString("telephone"));
+		user.setEmail(rs.getString("email_address"));
+		user.setTelephone(rs.getString("phone"));
 		user.setAddress(rs.getString("address"));
 		user.setCity(rs.getString("city"));
 		return user;
