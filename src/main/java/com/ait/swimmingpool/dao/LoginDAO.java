@@ -10,9 +10,11 @@ import com.ait.swimmingpool.dbconnection.ConnectionHelper;
 
 public class LoginDAO {
 
+	LoginBean login = null;
+	Connection c = null;
+
 	public LoginBean findByUsername(String username) {
-		LoginBean login = null;
-		Connection c = null;
+
 		String sql = "SELECT * FROM Login WHERE username = ?";
 		try {
 			c = ConnectionHelper.getConnection();
@@ -40,4 +42,20 @@ public class LoginDAO {
 		login.setAccessId(rs.getInt("access_id"));
 		return login;
 	}
+
+	public void addLogin(String username, String password, int accessType) {
+
+		String sql = "INSERT INTO login values (?,?,?);";
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			ps.setInt(3, accessType);
+			ps.executeUpdate();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+
 }
