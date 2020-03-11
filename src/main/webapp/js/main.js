@@ -43,7 +43,6 @@ var formToJSON = function(){
 		"address": $('#addressUser').val(),
 		"city": $('#cityUser').val(),
 		"email_address": $('#emailUser').val(),
-		"password": $('#passwordUser').val(),
-		"confirm password": $('#confirmpassworduser').val()
+		"password": $('#passwordUser').val()
 	});
 };
