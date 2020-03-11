@@ -4,33 +4,30 @@
 <meta charset="ISO-8859-1">
 <title>Registration</title>
 <script type="text/javascript" src="js/main.js"></script>
+<script src="js/jquery-3.4.1.js"></script>
 </head>
 <body>
 	<nav>
 		<h1>Enter Registration Details:</h1>
 	</nav>
-	<form name="registration" method="post" action="customerLandingPage.html">
+	<form name="registration" method="post" action="LoginPage.html">
 		<p class="required"><font color="red">* Required</font></p>
 		<div class="fieldset">
+				<label>Id:</label>
+					<input id="userId" name="id" type="text" disabled /><br> <br>
+					
 				<label class="field" for="fullname"><span><font color="red">*</font></span>Full Name:</label>
-					<input type="text" id="fullnamecustomer" placeholder="Full Name"><br> <br>
+					<input type="text" id="fullnameuser" placeholder="Full Name"><br> <br>
 					
 				<label class="field" for="date of birth"><span><font color="red">*</font></span>Date of Birth:</label>
-					<input type="date" id="dobcustomer" placeholder="Date of Birth"><br> <br>
+					<input type="date" id="dobuser" placeholder="Date of Birth"><br> <br>
 					 
 				<label class="field" for="gender"><span><font color="red">*</font></span>Gender:</label>
-					<input type="radio" name="gender" value="male">Male</input> 
-					<input type="radio" name="gender" value="female">Female</input><br> <br>
+					<input type="text" id="gender" placeholder="Gender"><br><br> 
+					
 					
 				<label class="field" for="membership"><span><font color="red">*</font></span>Membership Type:</label>
-					<select id="member">
-						<option value="empty"></option>
-						<option value="walk-in">Walk-In</option>
-						<option value="monthly">Monthly</option>
-						<option value="yearly">Yearly</option>
-						<option value="yearly">Staff</option>
-						<option value="yearly">Manager</option>
-					</select><br> <br>
+					<input type="text" id="membership" placeholder="Membership"><br><br>
 					
 				<label class="field" for="address"><span><font color="red">*</font></span>Address:</label>
 					<input type="text" id="addressUser" placeholder="Address"><br> <br> 

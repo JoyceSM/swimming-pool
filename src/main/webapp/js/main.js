@@ -1,4 +1,4 @@
-var rootURL = "http://localhost:8080/swimming-pool/";
+var rootURL = "http://localhost:8080/swimming-pool/rest/user";
 
 $(document).ready(function() {
 	findAll();
@@ -36,14 +36,16 @@ var newUser = function(){
 };
 
 var formToJSON = function(){
+	var userId = $('#userId').val();
 	return JSON.stringify({
-		"full_name": $('#fullnamecustomer').val(),
-		"date_of_birth": $('#dobcustomer').val(),
+		"user_id": userId == "" ? null : userId, 
+		"full_name": $('#fullnameuser').val(),
+		"date_of_birth": $('#dobuser').val(),
 		"gender": $("input[name='gender']:checked").val(),
-		"membership": $(this). children("#membership:selected"). val(),
+		"membership": $(this).children("#membership:selected").val(),
 		"address": $('#addressUser').val(),
 		"city": $('#cityUser').val(),
-		"email_address": $('#emailUser').val(),
-		"password": $('#passwordUser').val()
+		"phone": $('#phoneuser').val(),
+		"email_address": $('#emailUser').val()
 	});
 };
