@@ -1,19 +1,25 @@
 var rootURL = "http://localhost:8080/swimming-pool/rest/user";
 
 $(document).ready(function() {
-	findAll();
+//	findAll();
 	$(document).on("click", "#btnAdd", function(){newUser();});
 });
 
-var findAll = function() {
-	console.log('findAll');
-	$.ajax({
-		type: 'GET',
-		url: rootURL,
-		dataType: "json",
-		success:renderList
-	});
-};
+//var findAll = function() {
+//	console.log('findAll');
+//	$.ajax({
+//		type: 'GET',
+//		url: rootURL,
+//		dataType: "json",
+//		success:renderList
+//	});
+//};
+//
+//function renderList(data){
+//	$.each(data, function(index, user){
+//		$('#userList').append('<li><a href="#" id="' + user.id + '">' + user.name + '</a></li>');
+//	});
+//}
 
 var newUser = function(){
 	console.log('addUser');
@@ -27,7 +33,7 @@ var newUser = function(){
 			alert('User created successfully');
 			$('#userId').val(data.id);
 			$('#userList li').remove();
-			findAll();
+//			findAll();
 		},
 		error: function(jqXHR, textStatus, errorThrown){
 			alert('addUser error: ' + textStatus)
