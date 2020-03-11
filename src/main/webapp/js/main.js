@@ -41,11 +41,12 @@ var formToJSON = function(){
 		"user_id": userId == "" ? null : userId, 
 		"full_name": $('#fullnameuser').val(),
 		"date_of_birth": $('#dobuser').val(),
-		"gender": $("input[name='gender']:checked").val(),
-		"membership": $(this).children("#membership:selected").val(),
+		"gender": $('#gender').val(),
+		"membership": $('#membership').val(),
 		"address": $('#addressUser').val(),
 		"city": $('#cityUser').val(),
 		"phone": $('#phoneuser').val(),
 		"email_address": $('#emailUser').val()
 	});
 };
+
