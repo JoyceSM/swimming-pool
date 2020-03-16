@@ -15,38 +15,39 @@ import javax.ws.rs.core.MediaType;
 
 import com.ait.swimmingpool.bean.TimetableBean;
 import com.ait.swimmingpool.dao.TimetableDAO;
-import com.ait.wine.Wine;
 
 @Path("/timetable")
 public class TimetableResource {
 	TimetableDAO dao = new TimetableDAO();
-	
+
 	@GET
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<TimetableBean> findAll(){
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public List<TimetableBean> findAll() {
 		System.out.println("findAll");
 		return dao.findAll();
 	}
-	
+
 	@POST
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public TimetableBean create(TimetableBean timetable) {
 		System.out.println("creating timetable");
 		return dao.create(timetable);
 	}
-	
-	@PUT @Path("{id}")
-	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+
+	@PUT
+	@Path("{id}")
+	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public TimetableBean update(TimetableBean timetable) {
 		System.out.println("Updating timetable");
 		dao.update(timetable);
 		return timetable;
 	}
-	
-	@DELETE @Path("{id}")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+
+	@DELETE
+	@Path("{id}")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	public void remove(@PathParam("class_id") int id) {
 		dao.remove(id);
 	}

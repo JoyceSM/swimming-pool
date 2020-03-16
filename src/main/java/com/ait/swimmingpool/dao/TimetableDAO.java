@@ -10,7 +10,6 @@ import java.util.List;
 
 import com.ait.swimmingpool.bean.TimetableBean;
 import com.ait.swimmingpool.dbconnection.ConnectionHelper;
-import com.ait.wine.Wine;
 
 public class TimetableDAO {
 	public List<TimetableBean> findAll() {
@@ -32,7 +31,7 @@ public class TimetableDAO {
 		}
 		return list;
 	}
-	
+
 	protected TimetableBean processRow(ResultSet rs) throws SQLException {
 		TimetableBean timetable = new TimetableBean();
 		timetable.setClassId(rs.getInt("class_id"));
@@ -40,52 +39,51 @@ public class TimetableDAO {
 		timetable.setClassTime(rs.getInt("time"));
 		return timetable;
 	}
-	
+
 	public TimetableBean create(TimetableBean timetable) {
 		Connection c = null;
 		PreparedStatement ps = null;
 		try {
 			c = ConnectionHelper.getConnection();
-			ps = c.prepareStatement("INSERT INTO timetable" +
-			" (day_of_week, time)" +
-			" VALUES (?, ?)",
-			new String[] { "class_id" });
+			ps = c.prepareStatement("INSERT INTO timetable" + " (day_of_week, time)" + " VALUES (?, ?)",
+					new String[] { "class_id" });
 			ps.setString(1, timetable.getDayOfTheWeek());
 			ps.setInt(2, timetable.getClassTime());
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();
-			// Update the id in the returned object. This is important as this value must be returned
+			// Update the id in the returned object. This is important as this value must be
+			// returned
 			int id = rs.getInt(1);
 			timetable.setClassId(id);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			ConnectionHelper.close(c);
 		}
 		return timetable;
 	}
-	
+
 	public TimetableBean update(TimetableBean timetable) {
 		Connection c = null;
 		try {
 			c = ConnectionHelper.getConnection();
-			PreparedStatement ps = c.prepareStatement("UPDATE Timetable SET day_of_week = ?, time = ? " +
-			"WHERE class_id = ?");
+			PreparedStatement ps = c
+					.prepareStatement("UPDATE Timetable SET day_of_week = ?, time = ? " + "WHERE class_id = ?");
 			ps.setString(1, timetable.getDayOfTheWeek());
 			ps.setInt(2, timetable.getClassTime());
 			ps.setInt(3, timetable.getClassId());
 			ps.executeUpdate();
-		}catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			ConnectionHelper.close(c);
 		}
 		return timetable;
 	}
-	
+
 	public boolean remove(int id) {
 		Connection c = null;
 		try {
@@ -94,10 +92,10 @@ public class TimetableDAO {
 			ps.setInt(1, id);
 			int count = ps.executeUpdate();
 			return count == 1;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			ConnectionHelper.close(c);
 		}
 	}
