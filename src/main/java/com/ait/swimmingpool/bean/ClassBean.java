@@ -1,21 +1,23 @@
 package com.ait.swimmingpool.bean;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class ClassBean {
 	private String classId;
-	
+
 	private String className;
-	
+
 	private double price;
-	
-	private double capacity;
-	
-	private String startDate;
-	
-	private String endDate;
-	
+
+	private int capacity;
+
+	private Date startDate;
+
+	private Date endDate;
+
 	private String instructor;
 
 	public String getClassId() {
@@ -42,27 +44,27 @@ public class ClassBean {
 		this.price = price;
 	}
 
-	public double getCapacity() {
+	public int getCapacity() {
 		return capacity;
 	}
 
-	public void setCapacity(double capacity) {
+	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}
 
-	public String getStartDate() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStartDate(String startDate) {
+	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
 
-	public String getEndDate() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEndDate(String endDate) {
+	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
 
@@ -73,4 +75,5 @@ public class ClassBean {
 	public void setInstructor(String instructor) {
 		this.instructor = instructor;
 	}
+
 }
