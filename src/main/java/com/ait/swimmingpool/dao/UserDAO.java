@@ -1,6 +1,7 @@
 package com.ait.swimmingpool.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,13 +32,13 @@ public class UserDAO {
 		}
 		return list;
 	}
-	
+
 	protected UserBean processRow(ResultSet rs) throws SQLException {
 		UserBean user = new UserBean();
 		user.setUserId(rs.getInt("user_id"));
 		user.setFullName(rs.getString("full_name"));
 		user.setGender(rs.getString("gender"));
-		user.setDateOfBirth(rs.getString("date_of_birth"));
+		user.setDateOfBirth(rs.getDate("date_of_birth"));
 		user.setMembership(rs.getString("membership"));
 		user.setEmail(rs.getString("email_address"));
 		user.setTelephone(rs.getString("phone"));
@@ -45,7 +46,7 @@ public class UserDAO {
 		user.setCity(rs.getString("city"));
 		return user;
 	}
-	
+
 	public UserBean create(UserBean user) {
 		Connection c = null;
 		PreparedStatement ps = null;
@@ -53,14 +54,15 @@ public class UserDAO {
 			System.out.println("connect error");
 			c = ConnectionHelper.getConnection();
 			System.out.println("new connect error");
-			ps = c.prepareStatement("INSERT INTO User" + " (full_name, gender, date_of_birth, membership, email_address, phone, address, city)"
+			ps = c.prepareStatement("INSERT INTO User"
+					+ " (full_name, gender, date_of_birth, membership, email_address, phone, address, city)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)", new String[] { "user_id" });
 			System.out.println("error 0");
 			ps.setString(1, user.getFullName());
 			System.out.println("error 1");
 			ps.setString(2, user.getGender());
 			System.out.println("error 2");
-			ps.setString(3, user.getDateOfBirth());
+			ps.setDate(3, new Date(user.getDateOfBirth().getTime()));
 			System.out.println("error 3");
 			ps.setString(4, user.getMembership());
 			System.out.println("error 4");

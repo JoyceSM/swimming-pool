@@ -8,12 +8,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import com.ait.swimmingpool.bean.LoginBean;
+import com.ait.swimmingpool.constants.AccessType;
 import com.ait.swimmingpool.dao.LoginDAO;
 
 @Path("/login")
 public class LoginResource {
 
-	private static final int NOT_AUTHENTICATED = 0;
 	LoginDAO dao = new LoginDAO();
 
 	@GET
@@ -25,7 +25,7 @@ public class LoginResource {
 		if (login != null && login.getPassword().equals(password)) {
 			return login.getAccessId();
 		}
-		return NOT_AUTHENTICATED;
+		return AccessType.NOT_AUTHENTICATED.getAccessType();
 	}
 
 }

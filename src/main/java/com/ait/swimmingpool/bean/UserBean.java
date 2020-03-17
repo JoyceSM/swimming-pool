@@ -1,26 +1,30 @@
 package com.ait.swimmingpool.bean;
 
+import java.util.Date;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class UserBean {
 	private int userId;
-	
+
 	private String fullName;
-	
+
 	private String gender;
-	
-	private String dateOfBirth;
-	
+
+	private Date dateOfBirth;
+
 	private String membership;
-	
+
 	private String email;
-	
+
 	private String telephone;
-	
+
 	private String address;
-	
+
 	private String city;
+
+	private LoginBean credentials;
 
 	public int getUserId() {
 		return userId;
@@ -46,11 +50,11 @@ public class UserBean {
 		this.gender = gender;
 	}
 
-	public String getDateOfBirth() {
+	public Date getDateOfBirth() {
 		return dateOfBirth;
 	}
 
-	public void setDateOfBirth(String dateOfBirth) {
+	public void setDateOfBirth(Date dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
 
@@ -92,5 +96,13 @@ public class UserBean {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public LoginBean getCredentials() {
+		return credentials;
+	}
+
+	public void setCredentials(LoginBean credentials) {
+		this.credentials = credentials;
 	}
 }
