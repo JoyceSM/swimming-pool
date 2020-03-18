@@ -13,16 +13,16 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-import com.ait.swimmingpool.bean.PaymentBean;
-import com.ait.swimmingpool.dao.PaymentDAO;
+import com.ait.swimmingpool.bean.ClassEnrollmentBean;
+import com.ait.swimmingpool.dao.ClassEnrollmentDAO;
 
-@Path("/payment")
-public class PaymentResource {
-	PaymentDAO dao = new PaymentDAO();
+@Path("/enrollment")
+public class ClassEnrollmentResource {
+	ClassEnrollmentDAO dao = new ClassEnrollmentDAO();
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public List<PaymentBean> findAll(){
+	public List<ClassEnrollmentBean> findAll(){
 		System.out.println("findAll");
 		return dao.findAll();
 	}
@@ -30,23 +30,23 @@ public class PaymentResource {
 	@POST
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public PaymentBean create(PaymentBean payment) {
-		System.out.println("creating payment");
+	public ClassEnrollmentBean create(ClassEnrollmentBean payment) {
+		System.out.println("creating enrollment");
 		return dao.create(payment);
 	}
 	
 	@PUT @Path("{id}")
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public PaymentBean update(PaymentBean payment) {
-		System.out.println("Updating payment");
-		dao.update(payment);
-		return payment;
+	public ClassEnrollmentBean update(ClassEnrollmentBean enrollment) {
+		System.out.println("Updating enrollment");
+		dao.update(enrollment);
+		return enrollment;
 	}
 	
 	@DELETE @Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	public void remove(@PathParam("payment_id") int id) {
+	public void remove(@PathParam("user_id") int id) {
 		dao.remove(id);
 	}
 }

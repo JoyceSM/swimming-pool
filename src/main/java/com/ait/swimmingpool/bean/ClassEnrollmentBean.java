@@ -4,7 +4,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class ClassEnrollmentBean {
-	private String userId;
+	private int userId;
 	
 	private String classId;
 	
@@ -16,11 +16,11 @@ public class ClassEnrollmentBean {
 	
 	private double price;
 
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 

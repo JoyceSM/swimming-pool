@@ -1,6 +1,7 @@
 package com.ait.swimmingpool.dao;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ait.swimmingpool.bean.ClassEnrollmentBean;
+import com.ait.swimmingpool.bean.PaymentBean;
 import com.ait.swimmingpool.dbconnection.ConnectionHelper;
 
 public class ClassEnrollmentDAO {
@@ -40,5 +42,72 @@ public class ClassEnrollmentDAO {
 		classEnrollment.setSchoolName(rs.getString("school_name"));
 		classEnrollment.setPrice(rs.getDouble("price"));
 		return classEnrollment;
+	}
+	
+	public ClassEnrollmentBean create(ClassEnrollmentBean enrollment) {
+		Connection c = null;
+		PreparedStatement ps = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			ps = c.prepareStatement("INSERT INTO Class_Enrollment" +
+			" (class_id, payment_id, enrollment_date, school_name, price)" +
+			" VALUES (?, ?, ?, ?, ?)",
+			new String[] { "user_id" });
+			ps.setString(1, enrollment.getClassId());
+			ps.setString(2, enrollment.getPaymentId());
+			ps.setString(3, enrollment.getEnrollmentDate());
+			ps.setString(4, enrollment.getSchoolName());
+			ps.setDouble(5, enrollment.getPrice());
+			ps.executeUpdate();
+			ResultSet rs = ps.getGeneratedKeys();
+			rs.next();
+			// Update the id in the returned object. This is important as this value must be returned
+			int id = rs.getInt(1);
+			enrollment.setUserId(id);
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			ConnectionHelper.close(c);
+		}
+		return enrollment;
+	}
+	
+	public ClassEnrollmentBean update(ClassEnrollmentBean enrollment) {
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("UPDATE Class_Enrollment SET class_id = ?, payment_id = ?, enrollment_date = ?, school_name = ?, price = ? " +
+			"WHERE user_id = ?");
+			ps.setString(1, enrollment.getClassId());
+			ps.setString(2, enrollment.getPaymentId());
+			ps.setString(3, enrollment.getEnrollmentDate());
+			ps.setString(5, enrollment.getSchoolName());
+			ps.setDouble(6, enrollment.getPrice());
+			ps.setInt(7, enrollment.getUserId());
+			ps.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			ConnectionHelper.close(c);
+		}
+		return enrollment;
+	}
+	
+	public boolean remove(int id) {
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement("DELETE FROM Class_Enrollment WHERE user_id=?");
+			ps.setInt(1, id);
+			int count = ps.executeUpdate();
+			return count == 1;
+		}catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}finally {
+			ConnectionHelper.close(c);
+		}
 	}
 }
