@@ -7,6 +7,8 @@ var loginVar = localStorage.getItem('loginVar');
 
 $(document).ready(function() {
 
+	$('#btnSignOut').hide();
+
 	if (loginVar == 1) {
 		$("#loginContainer").html("<h1>Manager</h1>");
 		console.log("Manager");
@@ -17,6 +19,17 @@ $(document).ready(function() {
 		console.log("Customer");
 		$("#loginContainer").html("<h1>Customer</h1>");
 	}
+
+	if (loginVar != 0) {
+
+		$('#btnSignOut').show();
+	}
+
+	$('#btnSignOut').click(function() {
+		logout();
+
+		return false;
+	});
 
 	$('#btnSignIn').click(function() {
 
@@ -60,9 +73,15 @@ function login(username, password) {
 	}
 }
 
-function logout() {
+function clearUsernameAndPasswordField() {
+	$('#inputUsername').val('');
+	$('#inputPassword').val('');
+};
 
+function logout() {
+	clearUsernameAndPasswordField();
+
+	loginVar = 0;
 	localStorage.setItem('loginVar', 0);
 	window.location.reload(true);
-
-}
+};
