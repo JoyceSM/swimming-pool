@@ -35,7 +35,7 @@ public class ClassEnrollmentDAO {
 	
 	protected ClassEnrollmentBean processRow(ResultSet rs) throws SQLException {
 		ClassEnrollmentBean classEnrollment = new ClassEnrollmentBean();
-		classEnrollment.setUserId(rs.getString("user_id"));
+		classEnrollment.setUserId(rs.getInt("user_id"));
 		classEnrollment.setClassId(rs.getString("class_id"));
 		classEnrollment.setPaymentId(rs.getString("payment_id"));
 		classEnrollment.setEnrollmentDate(rs.getString("enrollment_date"));

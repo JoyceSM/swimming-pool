@@ -8,6 +8,29 @@ $(document).ready(function() {
 		return false;
 
 	})
+
+	$('#listClass').DataTable({// create a datatable list
+		"ajax" : {
+			"url" : rootURL,
+			"dataSrc" : ""
+		},
+		"columns" : [ {
+			"data" : "className"
+		}, {
+			"data" : "instructor"
+		}, {
+			"data" : "capacity"
+		}, {
+			"data" : "startDate"
+		}, {
+			data : null,
+			className : "center",// edit
+			// column
+			defaultContent : '<a href=""class="editor_edit">Edit</a>'
+
+		} ]
+
+	});
 });
 
 function addClass() {
