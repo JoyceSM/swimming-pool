@@ -9,12 +9,15 @@ $(document).ready(function() {
 
 	})
 
-	$('#listClass').DataTable({// create a datatable list
+	$('#listClass').DataTable({
 		"ajax" : {
 			"url" : rootURL,
 			"dataSrc" : ""
 		},
+
 		"columns" : [ {
+			"data" : "classId"
+		}, {
 			"data" : "className"
 		}, {
 			"data" : "instructor"
@@ -22,15 +25,26 @@ $(document).ready(function() {
 			"data" : "capacity"
 		}, {
 			"data" : "startDate"
+		}, {}, {
+			"data" : "time"
 		}, {
 			data : null,
-			className : "center",// edit
-			// column
-			defaultContent : '<a href=""class="editor_edit">Edit</a>'
+			className : "center",
+			defaultContent : '<a href=""class="editor_remove">Remove</a>'
 
 		} ]
 
 	});
+});
+$('#listClass').on('click', 'a.editor_remove', function(e) {
+	e.preventDefault();
+
+	if (confirm("Are you sure that you want to delete this class?")) {
+		var classId = $(this).closest("tr").find("td:eq(0)").text();
+		deleteClass(classId);
+		window.location.reload();
+	}
+
 });
 
 function addClass() {
@@ -51,6 +65,22 @@ function addClass() {
 	});
 }
 
+var deleteClass = function(classId) {
+	console.log('deleteClass');
+	$.ajax({
+		type : 'DELETE',
+		url : rootURL + '/' + classId,
+		success : function() {
+			alert('Class deleted successfuly');
+			currentClass = {};
+			findAll();
+		},
+		error : function() {
+			alert('deleteClass error')
+		}
+	})
+}
+
 var formToJSON = function() {
 	return JSON.stringify({
 		"classId" : $('#classId').val(),
@@ -59,7 +89,33 @@ var formToJSON = function() {
 		"capacity" : $('#capacity').val(),
 		"startDate" : $('#startDate').val(),
 		"endDate" : $('#endDate').val(),
-		"instructor" : $('#instructor').val()
+		"instructor" : $('#instructor').val(),
+		"timetable" : [ {
+			"dayOfTheWeek" : "Sunday",
+			"classTime" : $('#sunday').val(),
+		}, {
+			"dayOfTheWeek" : "Sunday",
+			"classTime" : $('#sunday').val(),
+		}, {
+			"dayOfTheWeek" : "Monday",
+			"classTime" : $('#monday').val(),
+		}, {
+			"dayOfTheWeek" : "Tuesday",
+			"classTime" : $('#tuesday').val(),
+		}, {
+			"dayOfTheWeek" : "Wednesday",
+			"classTime" : $('#wednesday').val(),
+		}, {
+			"dayOfTheWeek" : "Thursday",
+			"classTime" : $('#thursday').val(),
+		}, {
+			"dayOfTheWeek" : "Friday",
+			"classTime" : $('#friday').val(),
+		}, {
+			"dayOfTheWeek" : "Saturday",
+			"classTime" : $('#saturday').val(),
+
+		} ]
 	});
 }
 

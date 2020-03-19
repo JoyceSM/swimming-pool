@@ -14,7 +14,7 @@ import com.ait.swimmingpool.dao.LoginDAO;
 @Path("/login")
 public class LoginResource {
 
-	LoginDAO dao = new LoginDAO();
+	private LoginDAO dao = new LoginDAO();
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })

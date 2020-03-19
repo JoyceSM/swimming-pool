@@ -66,7 +66,7 @@ PRIMARY KEY (class_id)
 CREATE TABLE Timetable(
 class_id VARCHAR (12),
 day_of_week VARCHAR (12),
-time TIME,
+class_time VARCHAR (20),
 FOREIGN KEY (class_id)
 REFERENCES Class (class_id)
 );
@@ -85,11 +85,3 @@ REFERENCES Class (class_id),
 FOREIGN KEY (payment_id)
 REFERENCES Payment (payment_id)
 );
-
-
-
-
-    
-     
-	
-

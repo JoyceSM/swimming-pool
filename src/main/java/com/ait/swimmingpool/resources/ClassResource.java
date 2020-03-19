@@ -12,18 +12,21 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.ait.swimmingpool.bean.ClassBean;
+import com.ait.swimmingpool.bean.TimetableBean;
 import com.ait.swimmingpool.dao.ClassDAO;
+import com.ait.swimmingpool.dao.TimetableDAO;
 
 @Path("/class")
 public class ClassResource {
 
-	ClassDAO dao = new ClassDAO();
+	private ClassDAO cdao = new ClassDAO();
+	private TimetableDAO tdao = new TimetableDAO();
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
 	public List<ClassBean> findAll() {
 		System.out.println("findAll");
-		return dao.findAll();
+		return cdao.findAll();
 
 	}
 
@@ -32,7 +35,14 @@ public class ClassResource {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public ClassBean create(ClassBean addClass) {
 		System.out.println("Adding class");
-		return dao.create(addClass);
+		ClassBean cl = cdao.create(addClass);
+		for (TimetableBean timeBean : cl.getTimetable()) {
+			if (timeBean.getClassTime() != null && !timeBean.getClassTime().isEmpty()) {
+				timeBean.setClassId(addClass.getClassId());
+				tdao.create(timeBean);
+			}
+		}
+		return cl;
 
 	}
 
@@ -40,7 +50,7 @@ public class ClassResource {
 	@Path("{class_id}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public void remove(@PathParam("class_id") String classId) {
-		dao.remove(classId);
+		cdao.remove(classId);
 	}
 
 }

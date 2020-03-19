@@ -1,6 +1,7 @@
 package com.ait.swimmingpool.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -19,6 +20,16 @@ public class ClassBean {
 	private Date endDate;
 
 	private String instructor;
+
+	private List<TimetableBean> timetable;
+
+	public List<TimetableBean> getTimetable() {
+		return timetable;
+	}
+
+	public void setTimetable(List<TimetableBean> timetable) {
+		this.timetable = timetable;
+	}
 
 	public String getClassId() {
 		return classId;

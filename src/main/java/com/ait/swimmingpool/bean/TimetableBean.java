@@ -4,11 +4,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 public class TimetableBean {
-	private int classId;
+	private String classId;
 
 	private String dayOfTheWeek;
 
-	private int classTime;
+	private String classTime;
 
 	public String getDayOfTheWeek() {
 		return dayOfTheWeek;
@@ -18,19 +18,19 @@ public class TimetableBean {
 		this.dayOfTheWeek = dayOfTheWeek;
 	}
 
-	public int getClassTime() {
+	public String getClassTime() {
 		return classTime;
 	}
 
-	public void setClassTime(int classTime) {
+	public void setClassTime(String classTime) {
 		this.classTime = classTime;
 	}
 
-	public int getClassId() {
+	public String getClassId() {
 		return classId;
 	}
 
-	public void setClassId(int id) {
+	public void setClassId(String id) {
 		this.classId = id;
 	}
 }

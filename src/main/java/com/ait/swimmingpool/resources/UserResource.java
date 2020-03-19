@@ -15,8 +15,8 @@ import com.ait.swimmingpool.dao.UserDAO;
 
 @Path("/user")
 public class UserResource {
-	UserDAO dao = new UserDAO();
-	LoginDAO ldao = new LoginDAO();
+	private UserDAO dao = new UserDAO();
+	private LoginDAO ldao = new LoginDAO();
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })

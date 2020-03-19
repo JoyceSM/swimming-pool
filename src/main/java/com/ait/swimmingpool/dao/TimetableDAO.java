@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,9 +35,9 @@ public class TimetableDAO {
 
 	protected TimetableBean processRow(ResultSet rs) throws SQLException {
 		TimetableBean timetable = new TimetableBean();
-		timetable.setClassId(rs.getInt("class_id"));
+		timetable.setClassId(rs.getString("class_id"));
 		timetable.setDayOfTheWeek(rs.getString("day_of_week"));
-		timetable.setClassTime(rs.getInt("time"));
+		timetable.setClassTime(rs.getString("time"));
 		return timetable;
 	}
 
@@ -45,17 +46,13 @@ public class TimetableDAO {
 		PreparedStatement ps = null;
 		try {
 			c = ConnectionHelper.getConnection();
-			ps = c.prepareStatement("INSERT INTO timetable" + " (day_of_week, time)" + " VALUES (?, ?)",
-					new String[] { "class_id" });
-			ps.setString(1, timetable.getDayOfTheWeek());
-			ps.setInt(2, timetable.getClassTime());
+			ps = c.prepareStatement(
+					"INSERT INTO timetable" + " (class_id, day_of_week, class_time)" + " VALUES (?, ?, ?)");
+			ps.setString(1, timetable.getClassId());
+			ps.setString(2, timetable.getDayOfTheWeek());
+			ps.setString(3, timetable.getClassTime());
 			ps.executeUpdate();
-			ResultSet rs = ps.getGeneratedKeys();
-			rs.next();
-			// Update the id in the returned object. This is important as this value must be
-			// returned
-			int id = rs.getInt(1);
-			timetable.setClassId(id);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
@@ -70,10 +67,11 @@ public class TimetableDAO {
 		try {
 			c = ConnectionHelper.getConnection();
 			PreparedStatement ps = c
-					.prepareStatement("UPDATE Timetable SET day_of_week = ?, time = ? " + "WHERE class_id = ?");
-			ps.setString(1, timetable.getDayOfTheWeek());
-			ps.setInt(2, timetable.getClassTime());
-			ps.setInt(3, timetable.getClassId());
+					.prepareStatement("UPDATE Timetable SET day_of_week = ?, class_time = ? " + "WHERE class_id = ?");
+			ps.setString(1, timetable.getClassId());
+			ps.setString(2, timetable.getDayOfTheWeek());
+			ps.setTime(2, Time.valueOf(timetable.getClassTime()));
+			ps.setString(3, timetable.getClassId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
