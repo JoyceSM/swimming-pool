@@ -48,7 +48,7 @@ public class TimetableResource {
 	@DELETE
 	@Path("{id}")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public void remove(@PathParam("class_id") int id) {
+	public void remove(@PathParam("class_id") String id) {
 		dao.remove(id);
 	}
 }

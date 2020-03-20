@@ -1,41 +1,69 @@
 var rootURL = "http://localhost:8080/swimming-pool/rest/class";
 
-$(document).ready(function() {
+$(document)
+		.ready(
+				function() {
+					// create view class
+					if ($('#listClass').length) {
+						$('#listClass')
+								.DataTable(
+										{
+											"ajax" : {
+												"url" : rootURL,
+												"dataSrc" : ""
+											},
 
-	$('#btnSave').click(function() {
-		addClass();
+											"columns" : [
+													{
+														"data" : "classId"
+													},
+													{
+														"data" : "className"
+													},
+													{
+														"data" : "instructor"
+													},
+													{
+														"data" : "capacity"
+													},
+													{
+														"data" : "startDate"
+													},
+													{
+														data : null,
+														className : "center",
+														defaultContent : '<a href=""class="editor_edit">Edit</a>/<a href=""class="editor_remove">Remove</a>'
 
-		return false;
+													} ]
+										});
+					}
+					// create button update/register class
+					var urlSearchParams = new URLSearchParams(
+							window.location.search);
+					if (urlSearchParams.has('classId')) {
+						$('#btnSave').click(function() {
+							updateClass();
+							window.location.assign("viewClass.html");
+							return false;
+						});
 
-	})
-
-	$('#listClass').DataTable({
-		"ajax" : {
-			"url" : rootURL,
-			"dataSrc" : ""
-		},
-
-		"columns" : [ {
-			"data" : "classId"
-		}, {
-			"data" : "className"
-		}, {
-			"data" : "instructor"
-		}, {
-			"data" : "capacity"
-		}, {
-			"data" : "startDate"
-		}, {}, {
-			"data" : "time"
-		}, {
-			data : null,
-			className : "center",
-			defaultContent : '<a href=""class="editor_remove">Remove</a>'
-
-		} ]
-
-	});
+						var classId = urlSearchParams.get('classId');
+						findById(classId);
+					} else {
+						$('#btnSave').click(function() {
+							addClass();
+							window.location.assign("viewClass.html");
+							return false;
+						})
+					}
+				});
+// create edit action
+$('#listClass').on('click', 'a.editor_edit', function(e) {
+	e.preventDefault();
+	var classId = $(this).closest("tr").find("td:eq(0)").text();
+	window.location.assign("classPage.html?classId=" + classId);
 });
+// create remove action
 $('#listClass').on('click', 'a.editor_remove', function(e) {
 	e.preventDefault();
 
@@ -46,7 +74,7 @@ $('#listClass').on('click', 'a.editor_remove', function(e) {
 	}
 
 });
-
+// create add class
 function addClass() {
 	console.log('addClass');
 	$.ajax({
@@ -64,7 +92,25 @@ function addClass() {
 		}
 	});
 }
-
+// create update class
+var updateClass = function() {
+	console.log('updateClass');
+	$.ajax({
+		type : 'PUT',
+		contentType : 'application/json',
+		url : rootURL + '/' + $('#classId').val(),
+		dataType : "json",
+		data : formToJSON(),
+		success : function() {
+			alert('Class updated successfully');
+			findAll();
+		},
+		error : function(jqXHR, textStatus, errorThrown) {
+			alert('updateClass error: ' + textStatus);
+		}
+	});
+};
+// create remove class
 var deleteClass = function(classId) {
 	console.log('deleteClass');
 	$.ajax({
@@ -80,7 +126,60 @@ var deleteClass = function(classId) {
 		}
 	})
 }
+// create findById
+var findById = function(classId) {
+	console.log('findById: ' + classId);
+	$.ajax({
+		type : 'GET',
+		url : rootURL + '/' + classId,
+		dataType : "json",
+		success : function(data) {
+			console.log('findById success: ' + data.className)
+			renderDetails(data);
 
+		}
+	});
+};
+// access info from JSON
+var renderDetails = function(data) {
+
+	$('#classId').val(data.classId);
+	$('#className').val(data.className);
+	$('#price').val(data.price);
+	$('#capacity').val(data.capacity);
+	$('#startDate').val(data.startDate);
+	$('#endDate').val(data.endDate);
+	$('#instructor').val(data.instructor)
+
+	for (i = 0; i < data.timetable.length; i++) {
+		var timetable = data.timetable[i];
+
+		switch (timetable.dayOfTheWeek.toLowerCase()) {
+		case "sunday":
+			$('#sunday').val(timetable.classTime);
+			break;
+		case "monday":
+			$('#monday').val(timetable.classTime);
+			break;
+		case "tuesday":
+			$('#tuesday').val(timetable.classTime);
+			break;
+		case "wednesday":
+			$('#wednesday').val(timetable.classTime);
+			break;
+		case "thursday":
+			$('#thursday').val(timetable.classTime);
+			break;
+		case "friday":
+			$('#friday').val(timetable.classTime);
+			break;
+		case "saturday":
+			$('#saturday').val(timetable.classTime);
+		default:
+		}
+	}
+};
+// get info from JSON
 var formToJSON = function() {
 	return JSON.stringify({
 		"classId" : $('#classId').val(),
@@ -114,14 +213,17 @@ var formToJSON = function() {
 		}, {
 			"dayOfTheWeek" : "Saturday",
 			"classTime" : $('#saturday').val(),
-
 		} ]
 	});
 }
-
+// clear form field
 function clearFormField() {
-	$('#classId').val(''), $('#className').val(''), $('#price').val(''), $(
-			'#capacity').val(''), $('#startDate').val(''), $('#endDate')
-			.val(''), $('#instructor').val('')
-
+	$('#classId').val('');
+	$('#className').val('');
+	$('#price').val('');
+	$('#capacity').val('');
+	$('#startDate').val('');
+	$('#time').val('');
+	$('#endDate').val('');
+	$('#instructor').val('')
 };

@@ -1,7 +1,4 @@
 var rootURL = "http://localhost:8080/swimming-pool/rest/login";
-var MANAGER = "manager";
-var STAFF = "staff";
-var CUSTOMER = "customer";
 
 var loginVar = localStorage.getItem('loginVar');
 
@@ -21,13 +18,11 @@ $(document).ready(function() {
 	}
 
 	if (loginVar != 0) {
-
 		$('#btnSignOut').show();
 	}
 
 	$('#btnSignOut').click(function() {
 		logout();
-
 		return false;
 	});
 
@@ -40,7 +35,7 @@ $(document).ready(function() {
 		return false;
 	})
 });
-
+// create findById
 function findByUsername(username, password) {
 	var loginData;
 	console.log('findByUsername: ' + username);
@@ -59,7 +54,7 @@ function findByUsername(username, password) {
 	});
 	return loginData;
 };
-
+// create login function
 function login(username, password) {
 
 	if (!username || !password) {
@@ -72,12 +67,12 @@ function login(username, password) {
 		}
 	}
 }
-
+// create clear field
 function clearUsernameAndPasswordField() {
 	$('#inputUsername').val('');
 	$('#inputPassword').val('');
 };
-
+// create logout
 function logout() {
 	clearUsernameAndPasswordField();
 

@@ -86,6 +86,50 @@ public class ClassDAO {
 		} finally {
 			ConnectionHelper.close(c);
 		}
+	}
 
+	public ClassBean findById(String classId) {
+		String sql = "SELECT * FROM class WHERE class_id = ? ";
+		ClassBean cb = null;
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setString(1, classId);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				cb = processRow(rs);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+
+		return cb;
+	}
+
+	public ClassBean update(ClassBean classObj) {
+		Connection c = null;
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(
+					"UPDATE class SET class_name=?, price=?, capacity=?, start_date=?, end_date=?, instructor=? WHERE class_id=?");
+			ps.setString(1, classObj.getClassName());
+			ps.setDouble(2, classObj.getPrice());
+			ps.setInt(3, classObj.getCapacity());
+			ps.setDate(4, new Date(classObj.getStartDate().getTime()));
+			ps.setDate(5, new Date(classObj.getEndDate().getTime()));
+			ps.setString(6, classObj.getInstructor());
+			ps.setString(7, classObj.getClassId());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException();
+		} finally {
+			ConnectionHelper.close(c);
+		}
+		return classObj;
 	}
 }

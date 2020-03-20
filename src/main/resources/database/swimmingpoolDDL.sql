@@ -1,13 +1,7 @@
-DROP TABLE IF EXISTS User;
-DROP TABLE IF EXISTS Access_Type;
-DROP TABLE IF EXISTS Login;
-DROP TABLE IF EXISTS Payment;
-DROP TABLE IF EXISTS Class_Enrollment;
-DROP TABLE IF EXISTS Class;
-DROP TABLE IF EXISTS Timetable;
 DROP DATABASE IF EXISTS SNAMH;
 
 CREATE DATABASE IF NOT EXISTS SNAMH;
+
 USE SNAMH;
 
 CREATE TABLE User(
@@ -44,7 +38,7 @@ REFERENCES Access_Type (access_id)
 CREATE TABLE Payment(
 payment_id INTEGER AUTO_INCREMENT NOT NULL,
 user_id INTEGER,
-amount DECIMAL (30)NOT NULL,
+amount DECIMAL (30,2)NOT NULL,
 payment_date Date,
 PRIMARY KEY (payment_id),
 FOREIGN KEY (user_id)
@@ -55,7 +49,7 @@ CREATE TABLE Class(
 class_id VARCHAR
  (20),
 class_name VARCHAR (30),
-price DECIMAL (10),
+price DECIMAL (10,2),
 capacity INTEGER (10),
 start_date DATE, 
 end_date DATE,
@@ -77,7 +71,7 @@ class_id VARCHAR (20),
 payment_id INTEGER,
 enrollment_date DATE,
 school_name VARCHAR (30),
-price DECIMAL (30), 
+price DECIMAL (30,2), 
 FOREIGN KEY (user_id)
 REFERENCES User (user_id),
 FOREIGN KEY (class_id)
@@ -85,3 +79,11 @@ REFERENCES Class (class_id),
 FOREIGN KEY (payment_id)
 REFERENCES Payment (payment_id)
 );
+
+
+
+
+    
+     
+	
+
