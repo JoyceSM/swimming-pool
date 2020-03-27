@@ -40,11 +40,13 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto my-2 my-lg-0">
+
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Tips</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Login</a></li>
+					<li id="menu-login" class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Login</a></li>
+					<li id="menu-logout" class="nav-item"><a class="nav-link js-scroll-trigger" href="#logout">Logout</a></li>
 				</ul>
 			</div>
 		</div>
@@ -53,7 +55,7 @@
 	<!-- Masthead -->
 	<header class="masthead">
 		<div class="container h-100">
-			<div class="row h-100 align-items-center justify-content-center text-center">
+			<div id="loginContainer" class="row h-100 align-items-center justify-content-center text-center">
 				<div class="col-lg-10 align-self-end">
 					<h2 class="text-uppercase text-white font-weight-bold">Sign In</h2>
 					<hr class="divider my-4">
@@ -84,9 +86,8 @@
 
 											<button id="btnSignIn" type="submit" class="btn btn-primary">Sign in</button>
 
-											<button id="btnSignOut" type="submit" class="btn btn-primary">Sign out</button>
+											<!--  <button id="btnSignOut" type="submit" class="btn btn-primary">Sign out</button>-->
 										</div>
-
 
 									</div>
 								</form>
@@ -101,6 +102,163 @@
 					<div id="loginContainer"></div>
 				</div>
 
+			</div>
+
+			<!-- Manager Page -->
+			<div id="manager" style="display: none;">
+				<div class="row h-100 align-items-center justify-content-center text-center">
+					<div class="col-lg-12 align-self-end">
+						<h2 class="text-uppercase text-white font-weight-bold">Welcome Manager</h2>
+						<hr class="divider my-4">
+					</div>
+					<div class="col-lg-12 align-self-baseline">
+						<div class="d-flex justify-content-center h-100">
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-file-alt text-primary mb-4"></i>
+								<div class="card-body">
+
+									<a href="viewClass.html" class="btn btn-primary">View Class</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fas fa-folder-plus text-primary mb-4"></i>
+								<div class="card-body">
+
+									<a href="classPage.html" class="btn btn-primary">Add Class</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-user-check text-primary mb-4"></i>
+								<div class="card-body">
+
+
+									<a id="check-customer" href="#" class="btn btn-primary">Customer Account</a>
+								</div>
+							</div>
+
+						</div>
+
+						<div id="loginContainer"></div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Staff Page-->
+			<div id="staff" style="display: none;">
+				<div class="row h-100 align-items-center justify-content-center text-center">
+					<div class="col-lg-12 align-self-end">
+						<h2 class="text-uppercase text-white font-weight-bold">Welcome Staff</h2>
+						<hr class="divider my-5">
+					</div>
+					<div class="col-lg-12 align-self-baseline">
+						<div class="d-flex justify-content-center h-100">
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-users text-primary mb-4"></i>
+								<div class="card-body">
+
+									<a href="#" class="btn btn-primary">Sign People in</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-file-alt text-primary mb-4"></i>
+								<div class="card-body">
+
+
+									<a href="viewClass.html" class="btn btn-primary">View Class</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fas fa-hand-holding-usd text-primary mb-4"></i>
+								<div class="card-body">
+
+
+									<a href="#" class="btn btn-primary">Take Payment</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fas fa-user-plus text-primary mb-4"></i>
+								<div class="card-body">
+									<a href="#" class="btn btn-primary">Add People</a>
+								</div>
+							</div>
+						</div>
+						<div class="row h-100 align-items-center justify-content-center text-center">
+							<div class="col-lg-12 align-self-end"></div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-user-check text-primary mb-4"></i>
+								<div class="card-body">
+									<a href="#" class="btn btn-primary">Customer Account</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fas fa-address-card  text-primary mb-4"></i>
+								<div class="card-body">
+									<a href="#" class="btn btn-primary">Attendance Report</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fas fa-envelope-open-text text-primary mb-4"></i>
+								<div class="card-body">
+									<a href="#" class="btn btn-primary">Email</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Customer Page-->
+			<div id="customer" style="display: none;">
+				<div class="row h-100 align-items-center justify-content-center text-center">
+					<div class="col-lg-12 align-self-end">
+						<h2 class="text-uppercase text-white font-weight-bold">Welcome Customer</h2>
+						<hr class="divider my-5">
+					</div>
+					<div class="col-lg-12 align-self-baseline">
+						<div class="d-flex justify-content-center h-100">
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-file-alt text-primary mb-4"></i>
+								<div class="card-body">
+
+									<a href="viewClass.html" class="btn btn-primary">View Class</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-file-invoice text-primary mb-4"></i>
+								<div class="card-body">
+
+
+									<a href="#" class="btn btn-primary">View Timetable</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fa-money-check-alt text-primary mb-4"></i>
+								<div class="card-body">
+
+
+									<a href="#" class="btn btn-primary">Get Prices</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fas fa-user-plus text-primary mb-4"></i>
+								<div class="card-body">
+
+
+									<a href="#" class="btn btn-primary">Register for a Class</a>
+								</div>
+							</div>
+							<div class="card m-3" style="width: 18rem;">
+								<br> <i class="fas fa-7x fas fa-envelope-open-text text-primary mb-4"></i>
+								<div class="card-body">
+									<a href="#" class="btn btn-primary">Email</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="loginContainer"></div>
+
+				</div>
 			</div>
 
 		</div>
