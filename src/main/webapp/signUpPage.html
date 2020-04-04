@@ -43,7 +43,7 @@
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Services</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a></li>
 					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
-					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Login</a></li>
+					<li class="nav-item"><a class="nav-link js-scroll-trigger" href="loginPage.html">Login</a></li>
 				</ul>
 			</div>
 		</div>
@@ -107,10 +107,20 @@
 				id="inputRepeatPassword" placeholder="Please repeat password">
 		</div>
 
-		<input class="form-control" id="inputAccessType" type="hidden" id="inputAccessType" name="accessType" value="3">
+		<input class="form-control inputAccessTypeHidden" id="inputAccessType" type="hidden" id="inputAccessType"
+			name="accessType" value="3">
+		<div class="form-group"></div>
+		<div class="inputAccessTypeSelect" label for="inputAccessType">Access Type</label> <select class="form-control"
+				id="inputAccessType">
+				<option value="choose">Please choose an access type</option>
+				<option value="2">Staff</option>
+				<option value="3">Customer</option>
+			</select>
+		</div>
+		<br>
 
-
-		<button type="submit" id="bntSignIn"class="btn btn-primary">Sign in</button>
+		<button type="submit" id="btnSignUp" class="btn btn-primary">Sign up</button>
+		<button type="submit" id="btnBack" class="btn btn-primary">Back</button>
 	</div>
 
 

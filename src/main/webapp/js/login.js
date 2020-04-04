@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
 	var rootURL = "http://localhost:8080/swimming-pool/rest/login";
 
@@ -21,12 +21,12 @@ $(document).ready(function() {
 		$('#menu-login').hide();
 	}
 
-	$('#menu-logout').click(function() {
+	$('#menu-logout').click(function () {
 		logout();
 		return false;
 	});
 
-	$('#btnSignIn').click(function() {
+	$('#btnSignIn').click(function () {
 
 		var username = $('#inputEmail').val();
 		var password = $('#inputPassword').val();
@@ -40,15 +40,15 @@ $(document).ready(function() {
 		var loginData;
 		console.log('findByUsername: ' + username);
 		$.ajax({
-			type : 'GET',
-			url : rootURL + '?username=' + username + '&password=' + password,
+			type: 'GET',
+			url: rootURL + '?username=' + username + '&password=' + password,
 
-			dataType : "json",
-			async : false,
-			success : function(data) {
+			dataType: "json",
+			async: false,
+			success: function (data) {
 				loginData = data
 			},
-			error : function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				console.log("User doesn't exist error")
 			}
 		});
@@ -59,13 +59,14 @@ $(document).ready(function() {
 	function login(username, password) {
 
 		if (!username || !password) {
-
+			alert("Please inform your credential.")
 		} else {
 			accessType = findByUsername(username, password);
 			if (accessType != 0) {
 				localStorage.setItem('loginVar', accessType);
 				window.location.reload();
-
+			} else {
+				alert("The credential informed is not valid.")
 			}
 		}
 	}
@@ -84,4 +85,5 @@ $(document).ready(function() {
 		window.location.assign("loginPage.html");
 	}
 	;
+
 });

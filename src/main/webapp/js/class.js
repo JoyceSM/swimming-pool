@@ -58,6 +58,7 @@ $(document)
 
 				var classId = urlSearchParams.get('classId');
 				findById(classId);
+				$('#classId').attr('disabled', true);
 			} else {
 				$('#btnSave').click(function () {
 					addClass();
@@ -65,7 +66,7 @@ $(document)
 					return false;
 				})
 			}
-
+			
 			// create edit action
 			$('#listClass').on(
 				'click',
@@ -95,6 +96,10 @@ $(document)
 						}
 
 					});
+			//create back function
+			$('#btnBack').click(function () {
+				window.history.back();
+			});
 			// create add class
 			function addClass() {
 				console.log('addClass');
