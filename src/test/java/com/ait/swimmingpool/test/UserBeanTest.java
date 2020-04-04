@@ -46,8 +46,8 @@ public class UserBeanTest {
 	
 	@Test
 	public void testMembership() {
-		user.setMembership("full");
-		assertEquals("full", user.getMembership());
+		user.setMembership(true);
+		assertTrue(user.getMembership());
 	}
 	
 	@Test

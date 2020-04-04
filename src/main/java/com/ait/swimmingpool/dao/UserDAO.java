@@ -39,7 +39,7 @@ public class UserDAO {
 		user.setFullName(rs.getString("full_name"));
 		user.setGender(rs.getString("gender"));
 		user.setDateOfBirth(rs.getDate("date_of_birth"));
-		user.setMembership(rs.getString("membership"));
+		user.setMembership(rs.getBoolean("membership"));
 		user.setEmail(rs.getString("email_address"));
 		user.setTelephone(rs.getString("phone"));
 		user.setAddress(rs.getString("address"));
@@ -51,29 +51,18 @@ public class UserDAO {
 		Connection c = null;
 		PreparedStatement ps = null;
 		try {
-			System.out.println("connect error");
 			c = ConnectionHelper.getConnection();
-			System.out.println("new connect error");
 			ps = c.prepareStatement("INSERT INTO User"
 					+ " (full_name, gender, date_of_birth, membership, email_address, phone, address, city)"
 					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)", new String[] { "user_id" });
-			System.out.println("error 0");
 			ps.setString(1, user.getFullName());
-			System.out.println("error 1");
 			ps.setString(2, user.getGender());
-			System.out.println("error 2");
 			ps.setDate(3, new Date(user.getDateOfBirth().getTime()));
-			System.out.println("error 3");
-			ps.setString(4, user.getMembership());
-			System.out.println("error 4");
+			ps.setBoolean(4, user.getMembership());
 			ps.setString(5, user.getEmail());
-			System.out.println("error 5");
 			ps.setString(6, user.getTelephone());
-			System.out.println("error 6");
 			ps.setString(7, user.getAddress());
-			System.out.println("error 7");
 			ps.setString(8, user.getCity());
-			System.out.println("error 8");
 			ps.executeUpdate();
 			ResultSet rs = ps.getGeneratedKeys();
 			rs.next();

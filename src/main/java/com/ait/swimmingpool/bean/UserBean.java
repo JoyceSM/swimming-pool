@@ -14,7 +14,7 @@ public class UserBean {
 
 	private Date dateOfBirth;
 
-	private String membership;
+	private boolean membership;
 
 	private String email;
 
@@ -58,11 +58,11 @@ public class UserBean {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	public String getMembership() {
+	public boolean getMembership() {
 		return membership;
 	}
 
-	public void setMembership(String membership) {
+	public void setMembership(boolean membership) {
 		this.membership = membership;
 	}
 
