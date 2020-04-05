@@ -29,10 +29,10 @@ INSERT INTO Class VALUES ('AV','Advanced','20','30','2020-03-04','2020-06-04','S
 INSERT INTO Class VALUES ('OS','Over 60','5','20','2020-03-05','2020-06-05','Tom Jones');
 
 INSERT INTO Timetable VALUES ('PS','monday','17:00 - 18:00');
-INSERT INTO Timetable VALUES ('BG','tuesday','20:00 - 21:00');
+INSERT INTO Timetable VALUES ('BG','tuesday','14:00 - 15:00');
 INSERT INTO Timetable VALUES ('IM','wednesday','17:00 - 18:00');
 INSERT INTO Timetable VALUES ('AV','thursday ','17:00 - 18:00');
-INSERT INTO Timetable VALUES ('OS','friday','13:00 - 18:00');
+INSERT INTO Timetable VALUES ('OS','friday','13:00 - 14:00');
 
 INSERT INTO Class_Enrollment VALUES (3,'BG', 1000,'2020-04-04','St Marys','15.0');
 INSERT INTO Class_Enrollment VALUES (4,'PS',1001,'2020-04-04','Kids Aerobics','5.0');

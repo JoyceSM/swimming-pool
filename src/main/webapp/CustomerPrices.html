@@ -25,6 +25,7 @@
 <!-- Theme CSS - Includes Bootstrap -->
 <link href="css/creative.css" rel="stylesheet">
 
+
 </head>
 
 <body id="page-top">
@@ -52,65 +53,34 @@
 	</nav>
 
 	<!-- Masthead -->
-	
-	<div class="container-300">
+
+	<div class="container">
 		<br> <br> <br>
-
-		<h2>Class Registration</h2>
-	
-	<form name="ClassRegistration" method="post" action="ClassRegistrationPage.html">
-		<p class="required"><font color="red">* Required</font></p>
-		<p class="required"><font color="green">* Non members only</font></p>
-		<div class="fieldset">
-		
-				<label>Class name:  </label>
-					<input type="text" id="classname" placeholder="Class name"><br> <br>
-					
-				<label>Class Id:     </label>
-					<input id="userId" name="id" type="text" disabled /><br> <br>
-		
-				<label class="field" for="fullname"><span><font color="red">*</font></span>Full Name:  </label>
-					<input type="text" id="fullnameuser" placeholder="Full Name"><br> <br>
-					
-				<label class="field" for="membership">Membership Type:          </label>
-					<input type="text" id="membership" placeholder="Membership"><br><br>
-					
-				
-				<label class="field" for="phone"><span><font color="green">*</font></span>Phone No:    </label>
-					<input type="text" id="phoneuser" placeholder="Phone Number"><br><br>
-						
-					</div>
-	</form>		 	
-				
-					
-				
-				
-				
-
-	
-			<div class="text-right">
-				<button id="btnSave" type="submit" class="btn btn-primary">Save</button>
-			</div>
+		<h2>View Timetable</h2>
+		<br>
+		<div class="text-align-right">
+		<table  style="width: 60%">
+			<thead>
+ 				<tr>
+ 					 <th>Class Name<th>
+   					 <th>Class Id</th>
+   				 	<th>Price</th> 
+   				 
+ 		   		</tr>
+			</thead>	
+			<tbody>
+			</tbody>
+		</table>
+	</div>
 		
 	</div>
-
-
-	<!-- Login Section -->
-
-
-	<!-- Services Section -->
-
-
-	<!-- Portfolio Section -->
-
-
-	<!-- Call to Action Section -->
-
-
-	<!-- Contact Section -->
-
-
+	
+	
+	
+	
+	
 	<!-- Footer -->
+
 	<footer class="bg-light py-5">
 		<div class="container">
 			<div class="small text-center text-muted">Copyright &copy; 2020 - Snamh Swim</div>
@@ -120,6 +90,7 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="vendor/jquery/jquery.min.js"></script>
 	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdn.datatables.net/v/bs4/dt-1.10.20/datatables.min.js"></script>
 
 	<!-- Plugin JavaScript -->
 	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -128,11 +99,11 @@
 	<!-- Custom scripts for this template -->
 	<script src="js/creative.min.js"></script>
 
-	<!-- Register Class JavaScript -->
+	<!-- View Class JavaScript -->
 	<script type="text/javascript" src="js/class.js"></script>
 	<!-- Login JavaScript -->
 	<script type="text/javascript" src="js/login.js"></script>
 
 </body>
-
 </html>
+ 
