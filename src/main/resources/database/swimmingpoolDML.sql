@@ -29,10 +29,13 @@ INSERT INTO Class VALUES ('AV','Advanced','20','30','2020-03-04','2020-06-04','S
 INSERT INTO Class VALUES ('OS','Over 60','5','20','2020-03-05','2020-06-05','Tom Jones');
 
 INSERT INTO Timetable VALUES ('PS','monday','17:00 - 18:00');
+INSERT INTO Timetable VALUES ('OS','monday','08:00 - 09:00');
 INSERT INTO Timetable VALUES ('BG','tuesday','14:00 - 15:00');
 INSERT INTO Timetable VALUES ('IM','wednesday','17:00 - 18:00');
+INSERT INTO Timetable VALUES ('IM','wednesday','19:00 - 08:00');
 INSERT INTO Timetable VALUES ('AV','thursday ','17:00 - 18:00');
-INSERT INTO Timetable VALUES ('OS','friday','13:00 - 14:00');
+INSERT INTO Timetable VALUES ('OS','friday','13:00 - 18:00');
+INSERT INTO Timetable VALUES ('OS','friday','08:00 - 09:00');
 
 INSERT INTO Class_Enrollment VALUES (3,'BG', 1000,'2020-04-04','St Marys','15.0');
 INSERT INTO Class_Enrollment VALUES (4,'PS',1001,'2020-04-04','Kids Aerobics','5.0');
@@ -48,3 +51,36 @@ SELECT * FROM Timetable;
 SELECT * FROM Class_Enrollment;
 SELECT * FROM Login WHERE username = 'manager@snamh.com';
 SELECT * FROM timetable WHERE class_id = 'AV';
+
+SELECT Class.class_id, Class.class_name, Timetable.day_of_week, Timetable.class_time
+FROM Class
+INNER JOIN Timetable
+ON Class.class_id = Timetable.class_id ORDER BY 
+CASE
+          WHEN day_of_week = 'Sunday' THEN 1
+          WHEN day_of_week = 'Monday' THEN 2
+          WHEN day_of_week = 'Tuesday' THEN 3
+          WHEN day_of_week = 'Wednesday' THEN 4
+          WHEN day_of_week = 'Thursday' THEN 5
+          WHEN day_of_week = 'Friday' THEN 6
+          WHEN day_of_week = 'Saturday' THEN 7
+     END ASC, class_time, class_name;
+     
+UPDATE Timetable
+SET day_of_week = 'wednesday'
+WHERE class_id = 'AV';  
+
+ SELECT Class.class_id, Class.class_name, Timetable.day_of_week, Timetable.class_time 
+				FROM Class INNER JOIN Timetable ON Class.class_id = Timetable.class_id WHERE day_of_week = 'Monday' ORDER BY 
+				CASE	   WHEN day_of_week = 'Sunday' THEN 1 
+				          WHEN day_of_week = 'Monday' THEN 2  
+				          WHEN day_of_week = 'Tuesday' THEN 3 
+				          WHEN day_of_week = 'Wednesday' THEN 4  
+				          WHEN day_of_week = 'Thursday' THEN 5  
+				          WHEN day_of_week = 'Friday' THEN 6
+				          WHEN day_of_week = 'Saturday' THEN 7  
+				     END ASC, class_time, class_name;
+     
+
+
+

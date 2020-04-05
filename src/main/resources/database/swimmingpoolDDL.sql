@@ -79,11 +79,3 @@ REFERENCES Class (class_id),
 FOREIGN KEY (payment_id)
 REFERENCES Payment (payment_id)
 );
-
-
-
-
-    
-     
-	
-

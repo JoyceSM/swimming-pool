@@ -35,7 +35,7 @@ $(document).ready(function () {
 		return false;
 	})
 
-	// create findById
+	// create findByUsername
 	function findByUsername(username, password) {
 		var loginData;
 		console.log('findByUsername: ' + username);
