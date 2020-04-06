@@ -42,9 +42,19 @@ var renderDetails = function (data) {
 		var classTime = data[i];
 		$('#home-timetable').append(
 			'<tr><td>' + capitalizeFirstLetter(classTime.dayOfWeek) + '</td><td>' + classTime.classTime
-			+ '</td><td>' + classTime.className + '</td></tr>')
+			+ '</td><td>' + classTime.className + '</td><td><button id="btnEnroll" type="submit" class="btn btn-primary">Enroll me</button></td></tr>')
 	}
+	$('#home-timetable button').click(function () {
+		var className = $(this).closest("tr")
+			.find("td:eq(2)").text();
+		var classTime = $(this).closest("tr")
+			.find("td:eq(1)").text();
+		window.location
+			.assign("loginPage.html");
+
+	});
 
 };
+
 
 
