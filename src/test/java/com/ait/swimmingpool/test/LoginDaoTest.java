@@ -1,13 +1,13 @@
 package com.ait.swimmingpool.test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.ait.swimmingpool.bean.LoginBean;
 import com.ait.swimmingpool.dao.LoginDAO;
@@ -19,14 +19,14 @@ public class LoginDaoTest {
 	private LoginBean loginBean;
 	private Connection c;
 
-	@BeforeEach
+	@Before
 	public void init() throws ClassNotFoundException, SQLException {
 		c = ConnectionHelper.getConnection();
 		loginDao = new LoginDAO();
 		loginBean = new LoginBean();
 	}
 
-	@AfterEach
+	@After
 	public void finalize() throws SQLException {
 		c.close();
 	}
