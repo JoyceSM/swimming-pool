@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionHelper {
-	private static String url = "jdbc:mysql://localhost/SNAMH?user=root&password=admin";
+	private static String url = "jdbc:mysql://localhost/SNAMH?user=root&password=admin&serverTimezone=UTC";
 	private static ConnectionHelper instance;
 
 	private ConnectionHelper() {
