@@ -2,6 +2,9 @@ package com.ait.swimmingpool.bean;
 
 public class ClassTimeBean {
 	
+	
+	private String classId;
+	
 	private String dayOfWeek;
 	
 	private String classTime;
@@ -31,5 +34,14 @@ public class ClassTimeBean {
 	public void setClassName(String className) {
 		this.className = className;
 	}
+	
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
+	
+	public String getClassId() {
+		return classId;
+	}
+
 
 }

@@ -44,6 +44,7 @@ public class ClassTimeDAO {
 
 	protected ClassTimeBean processRow(ResultSet rs) throws SQLException {
 		ClassTimeBean time = new ClassTimeBean();
+		time.setClassId(rs.getString("class.class_id"));
 		time.setDayOfWeek(rs.getString("day_of_week"));
 		time.setClassName(rs.getString("class_name"));
 		time.setClassTime(rs.getString("class_time"));

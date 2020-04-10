@@ -22,7 +22,6 @@ function findByDayOfWeek(day) {
 	$.ajax({
 		type: 'GET',
 		url: rootURL + '/classTime/' + day,
-
 		dataType: "json",
 		async: false,
 		success: function (data) {
@@ -41,16 +40,19 @@ var renderDetails = function (data) {
 	for (i = 0; i < data.length; i++) {
 		var classTime = data[i];
 		$('#home-timetable').append(
-			'<tr><td>' + capitalizeFirstLetter(classTime.dayOfWeek) + '</td><td>' + classTime.classTime
-			+ '</td><td>' + classTime.className + '</td><td><button id="btnEnroll" type="submit" class="btn btn-primary">Enroll me</button></td></tr>')
+			'<tr><td>' + capitalizeFirstLetter(classTime.dayOfWeek) 
+			+ '</td><td>' + classTime.classTime
+			+ '</td><td>' + classTime.className 
+			+ '</td><td><button id="btnEnroll" type="submit" class="btn btn-primary">Enroll me</button></td>' 
+			+ '<td style="display: none">'+ classTime.classId +'</td></tr>');
 	}
 	$('#home-timetable button').click(function () {
-		var className = $(this).closest("tr")
-			.find("td:eq(2)").text();
-		var classTime = $(this).closest("tr")
-			.find("td:eq(1)").text();
-		window.location
-			.assign("loginPage.html");
+		var className = $(this).closest("tr").find("td:eq(2)").text();
+		var classTime = $(this).closest("tr").find("td:eq(1)").text();
+
+		var classId = $(this).closest("tr").find("td:eq(4)").text();
+		var username = localStorage.getItem('username');
+		window.location.assign("classEnrollment.html?classId=" + classId + "&username=" + username);
 
 	});
 

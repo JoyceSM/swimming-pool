@@ -4,9 +4,6 @@ $(document).ready(function () {
 
 	var loginVar = localStorage.getItem('loginVar');
 
-	$('#menu-logout').hide();
-	$('#menu-login').hide();
-
 	if (loginVar == 1) {
 		$('#manager').show();
 	} else if (loginVar == 2) {
@@ -61,9 +58,10 @@ $(document).ready(function () {
 		if (!username || !password) {
 			alert("Please inform your credential.")
 		} else {
-			accessType = findByUsername(username, password);
-			if (accessType != 0) {
-				localStorage.setItem('loginVar', accessType);
+			results = findByUsername(username, password);
+			if (results.accessType != 0) {
+				localStorage.setItem('loginVar', results.accessType);
+				localStorage.setItem('username', results.username);
 				window.location.reload();
 			} else {
 				alert("The credential informed is not valid.")
@@ -82,6 +80,7 @@ $(document).ready(function () {
 
 		loginVar = 0;
 		localStorage.setItem('loginVar', 0);
+		localStorage.setItem('username', "");
 		window.location.assign("loginPage.html");
 	}
 	;

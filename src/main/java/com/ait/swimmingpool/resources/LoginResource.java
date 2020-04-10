@@ -1,8 +1,10 @@
 package com.ait.swimmingpool.resources;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -18,14 +20,18 @@ public class LoginResource {
 
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON })
-	public int findByUsername(@QueryParam("username") String username, @QueryParam("password") String password) {
+	public Map<String, Object> findByUsername(@QueryParam("username") String username, @QueryParam("password") String password) {
 		System.out.println("findByUsername: " + username);
 		LoginBean login = dao.findByUsername(username);
-
+		
+		Map<String, Object> loginDetails = new HashMap<>();
 		if (login != null && login.getPassword().equals(password)) {
-			return login.getAccessId();
+			loginDetails.put("accessType", login.getAccessId());
+			loginDetails.put("username", login.getUsername());
+			return loginDetails;
 		}
-		return AccessType.NOT_AUTHENTICATED.getAccessType();
+		loginDetails.put("accessType", AccessType.NOT_AUTHENTICATED.getAccessType());
+		return loginDetails;
 	}
 
 }

@@ -13,6 +13,29 @@ import com.ait.swimmingpool.bean.UserBean;
 import com.ait.swimmingpool.dbconnection.ConnectionHelper;
 
 public class UserDAO {
+	
+	public UserBean findByUsername(String username) {
+		UserBean user = new UserBean();
+		Connection c = null;
+		String sql = "SELECT * FROM User where email_address = ?";
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setString(1, username);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				user = processRow(rs);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+		return user;
+	}
+	
+	
 	public List<UserBean> findAll() {
 		List<UserBean> list = new ArrayList<UserBean>();
 		Connection c = null;

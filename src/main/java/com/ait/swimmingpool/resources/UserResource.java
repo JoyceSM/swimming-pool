@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -15,6 +16,7 @@ import com.ait.swimmingpool.dao.UserDAO;
 
 @Path("/user")
 public class UserResource {
+	
 	private UserDAO dao = new UserDAO();
 	private LoginDAO ldao = new LoginDAO();
 
@@ -25,6 +27,7 @@ public class UserResource {
 		return dao.findAll();
 	}
 
+
 	@POST
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -34,5 +37,14 @@ public class UserResource {
 		ldao.addLogin(user.getEmail(), user.getCredentials().getPassword(), user.getCredentials().getAccessId());
 		return user;
 	}
+	
+	@GET
+	@Path("{username}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public UserBean findByUsername(@PathParam("username") String username) {
+		System.out.println("findByUsername: " + username);
+		return dao.findByUsername(username);
+	}
+	
 
 }
