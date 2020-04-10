@@ -53,73 +53,32 @@
 		</div>
 	</nav>
 
+	<!-- Masthead -->
 
 	<div class="container h-100 mt-5">
 		<form>
-			<br> <br> <br> <br>
+			<br> <br> <br>
+			<br>
 			<div>
-				<h1>Class Enrollment</h1>
+				<h1>Send Email</h1>
 			</div>
-
 			<div class="form-group">
-				<label for="inputClassName">Class Name</label> <select class="form-control" id="inputClassName">
+				<label for="Subject">Subject</label> <select class="form-control" id="subject">
+					<option value="P">Payment</option>
+					<option value="C">Classes</option>
+					<option value="O">Others</option>
 				</select>
 			</div>
-
-
 			<div class="form-group">
-				<label for="fullName">Customer Name</label> <select class="form-control" id="fullName">
-				</select>
+				<label for="inputMessage">Message:</label>
+				<textarea class="form-control" id="inputMessage" rows="3"></textarea>
 			</div>
-
-			<div>
-				<div class="form-group">
-					<label for="inputSchool">School</label> <input type="text" name="inputSchool"
-						class="form-control" id="inputSchool" placeholder="Please enter the school name">
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label for="inputPaymentType">Payment type</label> <select class="form-control"
-					id="inputPaymentType">
-					<option value="0">Full</option>
-					<option value="1">Weekly</option>
-				</select>
-			</div>
-
-			<div class="row">
-				<div class="col-lg-6 h-100">
-					<div class="card mb-4 box-shadow text-center">
-						<div class="card-header">
-							<h4 class="my-0 font-weight-normal">Price</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title"></h1>
-							<ul class="list-unstyled mt-3 mb-4 class-details">
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-6 h-100">
-					<div class="card mb-4 box-shadow text-center">
-						<div class="card-header">
-							<h4 class="my-0 font-weight-normal">Slots available</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title slots-card-title"></h1>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-
 
 		</form>
 
 		<div class="text-right">
 			<form>
-				<button id="btnSave" type="submit" class="btn btn-primary">Enroll</button>
+				<button id="btnSave" type="submit" class="btn btn-primary">Send</button>
 				<button type="submit" id="btnBack" class="btn btn-secondary">Back</button>
 
 			</form>
@@ -147,7 +106,7 @@
 	<script src="js/creative.min.js"></script>
 
 	<!-- Register Class JavaScript -->
-	<script type="text/javascript" src="js/class_enrollment.js"></script>
+	<script type="text/javascript" src="js/send_email.js"></script>
 	<!-- Login JavaScript -->
 	<script type="text/javascript" src="js/login.js"></script>
 

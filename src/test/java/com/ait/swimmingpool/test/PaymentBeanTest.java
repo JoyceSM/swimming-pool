@@ -29,8 +29,8 @@ public class PaymentBeanTest {
 	
 	@Test
 	public void testUserId() {
-		payment.setUserId("A123");
-		assertEquals("A123", payment.getUserId());
+		payment.setUserId(123);
+		assertEquals(123, payment.getUserId());
 	}
 	
 	@Test

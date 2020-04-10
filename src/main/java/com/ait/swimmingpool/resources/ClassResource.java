@@ -81,4 +81,11 @@ public class ClassResource {
 		}
 		return classObj;
 	}
+	
+	@GET
+	@Path("/slots/{class_id}")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public int findSlotsById(@PathParam("class_id") String classId) {
+		return cdao.findSlotsAvailable(classId);
+	}
 }

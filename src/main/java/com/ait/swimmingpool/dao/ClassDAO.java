@@ -132,5 +132,28 @@ public class ClassDAO {
 		}
 		return classObj;
 	}
+	
+	public int findSlotsAvailable(String classId) {
+		int slotsAvailable = 0;
+		Connection c = null;
+		String sql = "SELECT capacity - (SELECT count(*) FROM class_enrollment WHERE class_id = ?) "
+				+ "as slots FROM class WHERE class_id = ?;";
+		try {
+			c = ConnectionHelper.getConnection();
+			PreparedStatement s = c.prepareStatement(sql);
+			s.setString(1, classId);
+			s.setString(2, classId);
+			ResultSet rs = s.executeQuery();
+			if (rs.next()) {
+				slotsAvailable = rs.getInt("slots");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		} finally {
+			ConnectionHelper.close(c);
+		}
+		return slotsAvailable;
+	}
 			
 }

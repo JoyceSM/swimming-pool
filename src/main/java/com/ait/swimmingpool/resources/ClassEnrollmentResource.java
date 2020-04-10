@@ -1,5 +1,7 @@
 package com.ait.swimmingpool.resources;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -13,11 +15,17 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import com.ait.swimmingpool.bean.ClassEnrollmentBean;
+import com.ait.swimmingpool.bean.PaymentBean;
 import com.ait.swimmingpool.dao.ClassEnrollmentDAO;
+import com.ait.swimmingpool.dao.PaymentDAO;
 
 @Path("/enrollment")
 public class ClassEnrollmentResource {
-	ClassEnrollmentDAO dao = new ClassEnrollmentDAO();
+	
+	
+	private static SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
+	private ClassEnrollmentDAO dao = new ClassEnrollmentDAO();
+	private PaymentDAO pdao = new PaymentDAO();
 	
 	@GET
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -30,8 +38,15 @@ public class ClassEnrollmentResource {
 	@Consumes({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
 	public ClassEnrollmentBean create(ClassEnrollmentBean enrollment) {
-		System.out.println("creating enrollment");
-		return dao.create(enrollment);
+		ClassEnrollmentBean result = dao.create(enrollment);
+		if(enrollment.getPaymentId() == 0) {
+			PaymentBean payment = new PaymentBean();
+			payment.setAmount(enrollment.getPrice());
+			payment.setUserId(enrollment.getUserId());
+			payment.setPaymentDate(DATE_FORMATTER.format(new Date()));
+			pdao.create(payment);
+		}
+		return result;
 	}
 	
 	@PUT @Path("{id}")

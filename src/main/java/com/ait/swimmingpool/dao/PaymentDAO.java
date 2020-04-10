@@ -35,7 +35,7 @@ public class PaymentDAO {
 	protected PaymentBean processRow(ResultSet rs) throws SQLException {
 		PaymentBean payment = new PaymentBean();
 		payment.setPaymentId(rs.getInt("payment_id"));
-		payment.setUserId(rs.getString("user_id"));
+		payment.setUserId(rs.getInt("user_id"));
 		payment.setAmount(rs.getDouble("amount"));
 		payment.setPaymentDate(rs.getString("payment_date"));
 		return payment;
@@ -50,7 +50,7 @@ public class PaymentDAO {
 			" (user_id, amount, payment_date)" +
 			" VALUES (?, ?, ?)",
 			new String[] { "payment_id" });
-			ps.setString(1, payment.getUserId());
+			ps.setInt(1, payment.getUserId());
 			ps.setDouble(2, payment.getAmount());
 			ps.setString(3, payment.getPaymentDate());
 			ps.executeUpdate();
@@ -74,7 +74,7 @@ public class PaymentDAO {
 			c = ConnectionHelper.getConnection();
 			PreparedStatement ps = c.prepareStatement("UPDATE Payment SET user_id = ?, amount = ?, payment_date = ? " +
 			"WHERE payment_id = ?");
-			ps.setString(1, payment.getUserId());
+			ps.setInt(1, payment.getUserId());
 			ps.setDouble(2, payment.getAmount());
 			ps.setString(3, payment.getPaymentDate());
 			ps.setInt(4, payment.getPaymentId());

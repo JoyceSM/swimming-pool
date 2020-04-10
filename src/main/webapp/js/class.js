@@ -191,7 +191,7 @@ $(document)
 						findAll();
 					},
 					error: function () {
-						alert('deleteClass error')
+						alert('Unable to delete a class. Are there students enrolled to it?')
 					}
 				})
 			}

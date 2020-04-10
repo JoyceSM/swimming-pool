@@ -12,6 +12,7 @@ import com.ait.swimmingpool.bean.ClassEnrollmentBean;
 import com.ait.swimmingpool.dbconnection.ConnectionHelper;
 
 public class ClassEnrollmentDAO {
+	
 	public List<ClassEnrollmentBean> findAll() {
 		List<ClassEnrollmentBean> list = new ArrayList<ClassEnrollmentBean>();
 		Connection c = null;
@@ -36,7 +37,7 @@ public class ClassEnrollmentDAO {
 		ClassEnrollmentBean classEnrollment = new ClassEnrollmentBean();
 		classEnrollment.setUserId(rs.getInt("user_id"));
 		classEnrollment.setClassId(rs.getString("class_id"));
-		classEnrollment.setPaymentId(rs.getString("payment_id"));
+		classEnrollment.setPaymentId(rs.getInt("payment_id"));
 		classEnrollment.setEnrollmentDate(rs.getString("enrollment_date"));
 		classEnrollment.setSchoolName(rs.getString("school_name"));
 		classEnrollment.setPrice(rs.getDouble("price"));
@@ -53,7 +54,7 @@ public class ClassEnrollmentDAO {
 					+ " VALUES (?, ?, ?, ?, ?, ?)");
 			ps.setInt(1, enrollment.getUserId());
 			ps.setString(2, enrollment.getClassId());
-			ps.setString(3, enrollment.getPaymentId());
+			ps.setInt(3, enrollment.getPaymentId());
 			ps.setString(4, enrollment.getEnrollmentDate());
 			ps.setString(5, enrollment.getSchoolName());
 			ps.setDouble(6, enrollment.getPrice());
@@ -75,7 +76,7 @@ public class ClassEnrollmentDAO {
 					"UPDATE Class_Enrollment SET class_id = ?, payment_id = ?, enrollment_date = ?, school_name = ?, price = ? "
 							+ "WHERE user_id = ?");
 			ps.setString(1, enrollment.getClassId());
-			ps.setString(2, enrollment.getPaymentId());
+			ps.setInt(2, enrollment.getPaymentId());
 			ps.setString(3, enrollment.getEnrollmentDate());
 			ps.setString(5, enrollment.getSchoolName());
 			ps.setDouble(6, enrollment.getPrice());
@@ -105,4 +106,6 @@ public class ClassEnrollmentDAO {
 			ConnectionHelper.close(c);
 		}
 	}
+	
+	
 }

@@ -31,6 +31,7 @@ $(document).ready(function () {
 			});
 			
 			$("#inputClassName").change(function() {
+				updateClassSlots($("#inputClassName").val());
 				updateClassPrice();
 			});
 			
@@ -40,6 +41,7 @@ $(document).ready(function () {
 			
 
 			updateClassPrice();
+			$("#inputClassName").trigger("change");
 
 
 			$("#btnSave").click(function(e) {
@@ -54,6 +56,11 @@ $(document).ready(function () {
 			});
 			// create add class
 			function saveEnrollment() {
+				var slotsAvailable = $(".slots-card-title").text();
+				if(slotsAvailable <= 0) {
+					alert("No slots available. Unable to enroll.");
+					return;
+				}		
 				console.log('addClass');
 				$.ajax({
 					type: 'POST',
@@ -110,6 +117,21 @@ $(document).ready(function () {
 				});
 			}
 
+			function updateClassSlots(classId) {
+				console.log('updateClassSlots: ' + username);
+				$.ajax({
+					type: 'GET',
+					async: false,
+					url: rootURL + 'class/slots/' + classId,
+					dataType: "json",
+					success: function (data) {
+						$(".slots-card-title").text(data);
+					},
+					error: function (jqXHR, textStatus) {
+						console.log("Error: " + jqXHR);
+					}
+				});
+			}
 
 			
 			// price function

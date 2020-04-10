@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class PaymentBean {
 	private int paymentId;
 	
-	private String userId;
+	private int userId;
 	
 	private double amount;
 	
@@ -20,11 +20,11 @@ public class PaymentBean {
 		this.paymentId = paymentId;
 	}
 	
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 	
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 	

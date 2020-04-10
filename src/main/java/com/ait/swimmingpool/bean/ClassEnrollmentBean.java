@@ -8,7 +8,7 @@ public class ClassEnrollmentBean {
 	
 	private String classId;
 	
-	private String paymentId;
+	private int paymentId;
 	
 	private String enrollmentDate;
 	
@@ -32,11 +32,11 @@ public class ClassEnrollmentBean {
 		this.classId = classId;
 	}
 
-	public String getPaymentId() {
+	public int getPaymentId() {
 		return paymentId;
 	}
 
-	public void setPaymentId(String paymentId) {
+	public void setPaymentId(int paymentId) {
 		this.paymentId = paymentId;
 	}
 

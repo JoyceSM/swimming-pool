@@ -35,8 +35,8 @@ public class ClassEnrollmentBeanTest {
 	
 	@Test
 	public void testPaymentId() {
-		classEnrollment.setPaymentId("B100");
-		assertEquals("B100", classEnrollment.getPaymentId());
+		classEnrollment.setPaymentId(100);
+		assertEquals("100", classEnrollment.getPaymentId());
 	}
 	
 	@Test
