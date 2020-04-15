@@ -22,6 +22,8 @@ INSERT INTO  Payment VALUES (1000, 3,'15.00','2020-02-25');
 INSERT INTO  Payment VALUES (1001, 4,'5.00','2020-03-05');
 INSERT INTO  Payment VALUES (1002, 5,'0.00','2020-03-03');
 
+
+
 INSERT INTO Class VALUES ('PS','Primary School','5','40','2020-03-04','2020-06-04','Tom Jones');
 INSERT INTO Class VALUES ('BG','Beginner','10','30','2020-03-05','2020-06-05','Sean Smith');
 INSERT INTO Class VALUES ('IM','Intermediate','15','30','2020-03-06','2020-06-06','Tom Jones');
@@ -39,6 +41,8 @@ INSERT INTO Timetable VALUES ('OS','friday','08:00 - 09:00');
 
 INSERT INTO Class_Enrollment VALUES (3,'BG', 1000,'2020-04-04','St Marys','15.0');
 INSERT INTO Class_Enrollment VALUES (4,'PS',1001,'2020-04-04','Kids Aerobics','5.0');
+INSERT INTO Class_Enrollment VALUES (5,'OS',1002,'2020-04-04','Keep Fit','0.0');
+INSERT INTO Class_Enrollment VALUES (5,'OS',1002,'2020-04-04','Keep Fit','0.0');
 INSERT INTO Class_Enrollment VALUES (5,'OS',1002,'2020-04-04','Keep Fit','0.0');
 
 
@@ -81,6 +85,14 @@ WHERE class_id = 'AV';
 				          WHEN day_of_week = 'Saturday' THEN 7  
 				     END ASC, class_time, class_name;
      
+select * from user u inner join login l on u.email_address = l.username where access_id = 3;
 
+select capacity - (select count(*) from class_enrollment where class_id = 'BG') as slots from class where class_id = 'BG';
+
+select * from user u inner join payment p on u.user_id = p.user_id;
+
+select * from payment;
+
+select * from class_enrollment;
 
 

@@ -1,9 +1,3 @@
-DROP DATABASE IF EXISTS SNAMH;
-
-CREATE DATABASE IF NOT EXISTS SNAMH;
-
-USE SNAMH;
-
 CREATE TABLE User(
 user_id INTEGER AUTO_INCREMENT NOT NULL,
 full_name VARCHAR (60) NOT NULL,
@@ -75,7 +69,5 @@ price DECIMAL (30,2),
 FOREIGN KEY (user_id)
 REFERENCES User (user_id),
 FOREIGN KEY (class_id)
-REFERENCES Class (class_id),
-FOREIGN KEY (payment_id)
-REFERENCES Payment (payment_id)
+REFERENCES Class (class_id)
 );
